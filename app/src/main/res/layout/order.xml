@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:minHeight="65dp"
+        android:theme="@style/AppTheme"
+        android:title=""
+        android:background="@drawable/gradient"
+        android:id="@+id/order_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="15dp">
+
+            <ImageButton
+                android:id="@+id/logout_button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_logout"
+                android:contentDescription="@string/logout_button" />
+        </RelativeLayout>
+
+    </Toolbar>
+
+    <include layout="@layout/order_header"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/order_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+
+

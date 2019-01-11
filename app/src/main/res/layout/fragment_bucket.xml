@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical">
+
+    <Toolbar
+        android:id="@+id/order_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/gradient"
+        android:theme="@style/AppTheme">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_arrow_white_24dp"
+            android:contentDescription="Back" />
+
+    </Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bucket_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_toolbar" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bucket_recycler_view"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_edittext"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/bucket_comment"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="@string/your_comment"
+            android:textSize="14sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/bucket_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linear_layout_buttons"
+        android:layout_centerHorizontal="true"
+        android:text="@string/total_79"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bucket_delete_all"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/decline_button"
+            android:text="@string/delete_all"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/bucket_accept"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/accept_button"
+            android:text="@string/accept"
+            android:textAllCaps="false"
+            android:textColor="@color/qr_code_white" />
+
+    </LinearLayout>
+
+</RelativeLayout>

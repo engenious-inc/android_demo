@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/gradient"
+        app:elevation="5dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:toolbarId="@+id/toolbar">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shadow_rect_bg"
+                    android:elevation="-4dp"
+                    android:iconifiedByDefault="false"
+                    android:paddingEnd="8dp"
+                    android:queryHint="Search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/searchBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </SearchView>
+
+                <ImageButton
+                    android:id="@+id/searchBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/qr_btn_bg"
+                    android:contentDescription="@string/qr_scanner"
+                    android:cropToPadding="false"
+                    android:elevation="4dp"
+                    android:padding="16dp"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    android:src="@drawable/qr_code"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/qr_code" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/restaurantRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_light_background"
+            android:padding="16dp"
+            tools:listitem="@layout/restaurant_card" />
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

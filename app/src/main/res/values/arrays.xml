@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="reasons">
+        <item>Bring a menu</item>
+        <item>Bring the bill</item>
+        <item>Clean the table</item>
+        <item>Call a hookah man</item>
+        <item>Other</item>
+    </string-array>
+</resources>
