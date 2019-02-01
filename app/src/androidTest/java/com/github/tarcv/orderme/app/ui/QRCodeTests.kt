@@ -1,7 +1,9 @@
 package com.github.tarcv.orderme.app.ui
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.*
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.replaceText
+import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
@@ -17,7 +19,7 @@ class QRCodeTests {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
-//asd
+
     @Test
     fun qrCodeFromList() {
         onView(withId(R.id.login_later_button))
@@ -37,9 +39,4 @@ class QRCodeTests {
         onView(withId(R.id.restaurant_options_recycler))
                 .check(matches(isDisplayed()))
     }
-
-
-
 }
-
-
