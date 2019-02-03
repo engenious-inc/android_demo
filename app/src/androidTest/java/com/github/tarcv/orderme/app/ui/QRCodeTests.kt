@@ -20,6 +20,7 @@ class QRCodeTests {
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
     val validQR = "3_5"
     val restaurantName = "Republique"
+    val errorMessage = "QR Code could not be scanned"
 
     @Test
     fun qrCodeFromList() {
@@ -57,5 +58,21 @@ class QRCodeTests {
                 .perform(click())
 
         onView(withText(restaurantName)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun qrCodeFromErrorSimulation() {
+        onView(withId(R.id.login_later_button))
+                .perform(click())
+
+        Thread.sleep(2000)
+
+        onView(withText(restaurantName)).perform(click())
+
+        onView(withText("Detect table")).perform(click())
+
+        onView((withId(R.id.errorButton))).perform(click())
+
+        onView(withText(errorMessage)).check(matches(isDisplayed()))
     }
 }
