@@ -47,11 +47,11 @@ class QRCodeTests {
         onView(withId(R.id.login_later_button))
                 .perform(click())
 
-        Thread.sleep(2000)
+        onView(withText(restaurantName))
+                .perform(click())
 
-        onView(withText(restaurantName)).perform(click())
-
-        onView(withText("Detect table")).perform(click())
+        onView(withText("Detect table"))
+                .perform(click())
 
         onView(withId(R.id.qrCodeText))
                 .perform(replaceText(validQR), closeSoftKeyboard())
@@ -59,7 +59,8 @@ class QRCodeTests {
         onView(withId(R.id.submitButton))
                 .perform(click())
 
-        onView(withText(restaurantName)).check(matches(isDisplayed()))
+        onView(withText(restaurantName))
+                .check(matches(isDisplayed()))
     }
 
     @Test
@@ -67,14 +68,16 @@ class QRCodeTests {
         onView(withId(R.id.login_later_button))
                 .perform(click())
 
-        Thread.sleep(2000)
+        onView(withText(restaurantName))
+                .perform(click())
 
-        onView(withText(restaurantName)).perform(click())
+        onView(withText("Detect table"))
+                .perform(click())
 
-        onView(withText("Detect table")).perform(click())
+        onView((withId(R.id.errorButton)))
+                .perform(click())
 
-        onView((withId(R.id.errorButton))).perform(click())
-
-        onView(withText(errorMessage)).check(matches(isDisplayed()))
+        onView(withText(errorMessage))
+                .check(matches(isDisplayed()))
     }
 }
