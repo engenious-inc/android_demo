@@ -58,7 +58,7 @@ class QRCodeTests {
 
         val qrCodeScreen = restaurantScreen.detectTable()
 
-        qrCodeScreen.simulateError()
-        qrCodeScreen.isErrorDisplayed(errorMessage)
+        val dialogScreen = qrCodeScreen.simulateError()
+        dialogScreen.isErrorDisplayed(errorMessage)
     }
 }
