@@ -11,9 +11,7 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.github.tarcv.orderme.app.R
-import com.github.tarcv.orderme.app.ui.Screens.HomeScreen
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
-import com.github.tarcv.orderme.app.ui.Screens.MockQRCodeScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import org.junit.Rule
 import org.junit.Test

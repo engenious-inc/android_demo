@@ -1,6 +1,5 @@
 package com.github.tarcv.orderme.app.ui.Screens
 
-import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions.click
@@ -18,7 +17,7 @@ class LoginScreen {
         loginLaterButton.check(matches(isDisplayed()))
     }
 
-    fun clickOnLoginLaterButton() : HomeScreen {
+    fun clickOnLoginLaterButton(): HomeScreen {
         loginLaterButton.perform(click())
         return HomeScreen()
     }

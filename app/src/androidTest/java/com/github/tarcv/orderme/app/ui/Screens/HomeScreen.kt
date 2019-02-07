@@ -17,7 +17,7 @@ class HomeScreen {
         qrCodeButton.check(matches(isDisplayed()))
     }
 
-    fun clickOnQRCodeButton() : MockQRCodeScreen {
+    fun clickOnQRCodeButton(): MockQRCodeScreen {
         qrCodeButton.perform(click())
         return MockQRCodeScreen()
     }
