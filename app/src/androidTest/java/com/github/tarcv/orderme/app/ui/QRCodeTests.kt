@@ -11,6 +11,8 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
+import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,22 +26,19 @@ class QRCodeTests {
     val restaurantName = "Republique"
     val errorMessage = "QR Code could not be scanned"
 
+    val tableID = "3_5"
+
     @Test
     fun qrCodeFromList() {
-        onView(withId(R.id.login_later_button))
-                .perform(click())
+        val loginScreen = LoginScreen()
+        val homeScreen = loginScreen.clickOnLoginLaterButton()
 
-        onView(withId(R.id.searchBtn))
-                .perform(click())
+        val qrCodeScreen = homeScreen.clickOnQRCodeButton()
+        qrCodeScreen.enter(tableID)
+                .clickOnSubmitButton()
 
-        onView(withId(R.id.qrCodeText))
-                .perform(replaceText(validQR), closeSoftKeyboard())
-
-        onView(withId(R.id.submitButton))
-                .perform(click())
-
-        onView(withId(R.id.restaurant_options_recycler))
-                .check(matches(isDisplayed()))
+        val restaurantScreen = RestaurantScreen()
+        restaurantScreen.optionsAreDisplayed
     }
 
     @Test
