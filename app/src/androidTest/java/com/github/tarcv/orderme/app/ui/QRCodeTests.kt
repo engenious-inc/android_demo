@@ -10,6 +10,10 @@ import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.ui.Screens.HomeScreen
+import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
+import com.github.tarcv.orderme.app.ui.Screens.MockQRCodeScreen
+import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,23 +24,19 @@ class QRCodeTests {
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
+    val tableID = "3_5"
+
     @Test
     fun qrCodeFromList() {
-        onView(withId(R.id.login_later_button))
-                .perform(click())
+        val loginScreen = LoginScreen()
+        val homeScreen = loginScreen.clickOnLoginLaterButton()
 
-        onView(withId(R.id.searchBtn))
-                .perform(click())
+        val qrCodeScreen = homeScreen.clickOnQRCodeButton()
 
-        val t = "3_5"
+        qrCodeScreen.enter(tableID)
+                .clickOnSubmitButton()
 
-        onView(withId(R.id.qrCodeText))
-                .perform(replaceText(t), closeSoftKeyboard())
-
-        onView(withId(R.id.submitButton))
-                .perform(click())
-
-        onView(withId(R.id.restaurant_options_recycler))
-                .check(matches(isDisplayed()))
+        val restaurantScreen = RestaurantScreen()
+        restaurantScreen.optionsAreDisplayed
     }
 }
