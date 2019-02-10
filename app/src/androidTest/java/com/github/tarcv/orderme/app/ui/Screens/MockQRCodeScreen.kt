@@ -18,6 +18,10 @@ class MockQRCodeScreen {
     private val errorButton: ViewInteraction
         get() = onView(withId(R.id.errorButton))
 
+    init {
+        qrCodeText.check(matches(isDisplayed()))
+    }
+  
     fun enterQRCode(validCode: String): MockQRCodeScreen {
         qrCodeText.perform(replaceText(validCode), closeSoftKeyboard())
         return this
@@ -30,5 +34,5 @@ class MockQRCodeScreen {
     fun simulateError(): DialogScreen {
         errorButton.perform(click())
         return DialogScreen()
-    }
+    }   
 }

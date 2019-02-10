@@ -16,6 +16,10 @@ class RestaurantScreen {
     private val detectTableButton: ViewInteraction
         get() = onView(withText("Detect table"))
 
+    init {
+        restaurantOptions.check(matches(isDisplayed()))
+    }
+  
     fun isRestaurantDisplayed() {
         restaurantOptions.check(matches(isDisplayed()))
     }
@@ -23,5 +27,4 @@ class RestaurantScreen {
     fun detectTable(): MockQRCodeScreen {
         detectTableButton.perform(click())
         return MockQRCodeScreen()
-    }
 }

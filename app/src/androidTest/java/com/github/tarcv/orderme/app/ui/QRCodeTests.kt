@@ -18,10 +18,11 @@ class QRCodeTests {
     val restaurantName = "Republique"
     val errorMessage = "QR Code could not be scanned"
 
+    val tableID = "3_5"
+
     @Test
     fun qrCodeFromList() {
         val loginScreen = LoginScreen()
-
         val homeScreen = loginScreen.loginLater()
 
         val qrCodeScreen = homeScreen.search()
