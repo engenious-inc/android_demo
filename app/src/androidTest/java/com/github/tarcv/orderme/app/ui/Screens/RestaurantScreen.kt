@@ -19,7 +19,7 @@ class RestaurantScreen {
     init {
         restaurantOptions.check(matches(isDisplayed()))
     }
-  
+
     fun isRestaurantDisplayed() {
         restaurantOptions.check(matches(isDisplayed()))
     }
@@ -27,4 +27,5 @@ class RestaurantScreen {
     fun detectTable(): MockQRCodeScreen {
         detectTableButton.perform(click())
         return MockQRCodeScreen()
+    }
 }

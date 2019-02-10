@@ -5,6 +5,8 @@ import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import android.support.test.espresso.action.ViewActions.replaceText
 import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.github.tarcv.orderme.app.R
 
@@ -21,7 +23,7 @@ class MockQRCodeScreen {
     init {
         qrCodeText.check(matches(isDisplayed()))
     }
-  
+
     fun enterQRCode(validCode: String): MockQRCodeScreen {
         qrCodeText.perform(replaceText(validCode), closeSoftKeyboard())
         return this
@@ -34,5 +36,5 @@ class MockQRCodeScreen {
     fun simulateError(): DialogScreen {
         errorButton.perform(click())
         return DialogScreen()
-    }   
+    }
 }
