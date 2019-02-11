@@ -19,7 +19,9 @@ class ImageButtonMatcher private constructor(private val buttonToMatch: Int)
     }
 
     override fun matchesSafely(item: ImageButton?): Boolean {
-        return Matchers.allOf(isDescendantOfA(isAssignableFrom(View::class.java)), withId(buttonToMatch)).matches(item)
+        return Matchers.allOf(isDescendantOfA(isAssignableFrom(View::class.java)),
+                withId(buttonToMatch))
+                .matches(item)
     }
 
     companion object {
@@ -36,7 +38,9 @@ class RecyclerViewItemMatcher private constructor(private val restaurantName: St
     }
 
     override fun matchesSafely(item: View?): Boolean {
-        return Matchers.allOf(isDescendantOfA(isAssignableFrom(RecyclerView::class.java)), withText(restaurantName)).matches(item)
+        return Matchers.allOf(isDescendantOfA(isAssignableFrom(RecyclerView::class.java)),
+                withText(restaurantName))
+                .matches(item)
     }
 
     companion object {
