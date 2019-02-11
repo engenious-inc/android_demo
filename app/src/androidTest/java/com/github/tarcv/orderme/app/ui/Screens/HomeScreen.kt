@@ -14,6 +14,10 @@ class HomeScreen {
     private val searchButton: ViewInteraction
         get() = onView(ImageButtonMatcher.imageButtonMatches(R.id.searchBtn))
 
+    private val restaurantRow: (String) -> ViewInteraction = { restaurantName ->
+        onView(RecyclerViewItemMatcher.restaurantNameMatches(restaurantName))
+    }
+
     init {
         searchButton.check(matches(isDisplayed()))
     }
@@ -24,8 +28,7 @@ class HomeScreen {
     }
 
     fun tapRestaurant(restaurantName: String): RestaurantScreen {
-        onView(RecyclerViewItemMatcher.restaurantNameMatches(restaurantName))
-                .perform(click())
+        restaurantRow(restaurantName).perform(click())
 
         return RestaurantScreen()
     }
