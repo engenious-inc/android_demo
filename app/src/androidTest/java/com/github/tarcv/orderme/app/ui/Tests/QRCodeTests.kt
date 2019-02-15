@@ -1,9 +1,10 @@
-package com.github.tarcv.orderme.app.ui
+package com.github.tarcv.orderme.app.ui.Tests
 
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
+import com.github.tarcv.orderme.app.ui.SplashActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
