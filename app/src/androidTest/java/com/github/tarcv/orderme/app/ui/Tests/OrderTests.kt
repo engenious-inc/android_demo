@@ -2,7 +2,10 @@ package com.github.tarcv.orderme.app.ui.Tests
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.matcher.ViewMatchers.*
+import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import android.support.test.espresso.matcher.ViewMatchers.hasSibling
 import android.support.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
@@ -81,9 +84,8 @@ class OrderTests {
                 .perform(click())
         sleep(1000)
 
-
         addToCart("OCTOPUS")
-        addToCart("OCTOPUS")
+        addToCart("COLEMAN FARMS LITTLE GEMS")
         addToCart("OCTOPUS")
     }
 }
