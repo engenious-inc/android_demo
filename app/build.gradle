@@ -10,8 +10,15 @@ buildscript {
         google()
         jcenter()
         mavenLocal()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+    dependencies {
+        classpath 'com.shazam.fork:fork-gradle-plugin:3.7.0-SNAPSHOT'
     }
 }
+
+apply plugin: 'com.shazam.fork'
 
 android {
     compileSdkVersion 27
@@ -81,4 +88,18 @@ dependencies {
 
 kapt {
     generateStubs = true
+}
+
+fork {
+    title = "My acceptance tests"
+    testPackage = "com.github.tarcv.orderme.app.ui"
+    fallbackToScreenshots = true
+    poolingStrategy {
+        computed {
+            characteristic = "sw"
+            groups {
+                allDevices = 0
+            }
+        }
+    }
 }

@@ -18,7 +18,7 @@ import org.junit.Test
 import java.lang.Thread.sleep
 import java.util.concurrent.atomic.AtomicReference
 
-class OrderTests {
+class OrderTest {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
