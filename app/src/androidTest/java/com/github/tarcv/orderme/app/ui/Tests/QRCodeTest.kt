@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class QRCodeTests {
+class QRCodeTest {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
