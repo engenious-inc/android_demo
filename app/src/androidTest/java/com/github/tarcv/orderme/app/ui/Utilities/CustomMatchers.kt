@@ -1,4 +1,4 @@
-package com.github.tarcv.orderme.app.ui.Utils
+package com.github.tarcv.orderme.app.ui.Utilities
 
 import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
