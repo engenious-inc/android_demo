@@ -10,22 +10,17 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class QRCodeTest {
+class QRCodeTest : BaseTest() {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
-    val validQR = "3_5"
-    val restaurantName = "Republique"
     val errorMessage = "QR Code could not be scanned"
 
     @Test
     fun qrCodeFromList() {
-        val loginScreen = LoginScreen()
-        val homeScreen = loginScreen.loginLater()
-
-        val qrCodeScreen = homeScreen.search()
-        qrCodeScreen.enterQRCode(validQR)
+        val qrCodeScreen = loginLaterAndNavigateToMockQR()
+        qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
 
         val restaurantScreen = RestaurantScreen()
@@ -35,14 +30,13 @@ class QRCodeTest {
     @Test
     fun qrCodeFromPlaceHappyPath() {
         val loginScreen = LoginScreen()
-
         val homeScreen = loginScreen.loginLater()
 
-        val restaurantScreen = homeScreen.tapRestaurant(restaurantName)
+        val restaurantScreen = homeScreen.tapRestaurant(republique)
 
         val qrCodeScreen = restaurantScreen.detectTable()
 
-        qrCodeScreen.enterQRCode(validQR)
+        qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
 
         restaurantScreen.isRestaurantDisplayed()
@@ -54,7 +48,7 @@ class QRCodeTest {
 
         val homeScreen = loginScreen.loginLater()
 
-        val restaurantScreen = homeScreen.tapRestaurant(restaurantName)
+        val restaurantScreen = homeScreen.tapRestaurant(republique)
 
         val qrCodeScreen = restaurantScreen.detectTable()
 

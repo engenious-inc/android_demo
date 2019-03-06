@@ -6,13 +6,10 @@ import com.github.tarcv.orderme.app.ui.SplashActivity
 import org.junit.Rule
 import org.junit.Test
 
-class PlacesTests {
+class PlacesTests : BaseTest() {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
-
-    val romanovRest: String = "Romanov"
-    val hakkasanRest: String = "Hakkasan"
 
     @Test
     fun testSearchPlace() {

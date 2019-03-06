@@ -8,7 +8,6 @@ import android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import android.support.test.espresso.matcher.ViewMatchers.hasSibling
 import android.support.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.R
-import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
 import com.github.tarcv.orderme.app.ui.Utilities.getText
@@ -18,13 +17,11 @@ import org.junit.Test
 import java.lang.Thread.sleep
 import java.util.concurrent.atomic.AtomicReference
 
-class OrderTest {
+class OrderTest : BaseTest() {
 
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
-    val validQR = "3_5"
-    val restaurantName = "Republique"
     val errorMessage = "QR Code could not be scanned"
 
     fun addToCart(dish: String) {
@@ -38,11 +35,8 @@ class OrderTest {
 
     @Test
     fun testCustomAction() {
-        val loginScreen = LoginScreen()
-        val homeScreen = loginScreen.loginLater()
-
-        val qrCodeScreen = homeScreen.search()
-        qrCodeScreen.enterQRCode(validQR)
+        val qrCodeScreen = loginLaterAndNavigateToMockQR()
+        qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
 
         val restaurantScreen = RestaurantScreen()
@@ -63,11 +57,8 @@ class OrderTest {
 
     @Test
     fun clickOnPlusButton() {
-        val loginScreen = LoginScreen()
-        val homeScreen = loginScreen.loginLater()
-
-        val qrCodeScreen = homeScreen.search()
-        qrCodeScreen.enterQRCode(validQR)
+        val qrCodeScreen = loginLaterAndNavigateToMockQR()
+        qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
 
         val restaurantScreen = RestaurantScreen()
