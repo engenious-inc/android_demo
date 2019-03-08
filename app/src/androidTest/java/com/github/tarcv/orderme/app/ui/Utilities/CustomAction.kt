@@ -12,7 +12,7 @@ fun getText(textHolder: AtomicReference<String>): ViewAction {
     return GetTextAction(textHolder)
 }
 
-private class GetTextAction(val textHolder: AtomicReference<String>) : ViewAction {
+private class GetTextAction(var textHolder: AtomicReference<String>) : ViewAction {
     override fun getDescription(): String {
         return "Get text on the view"
     }

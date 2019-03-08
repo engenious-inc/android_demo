@@ -25,6 +25,7 @@ import java.lang.Thread.sleep
 class HomeScreen {
 
     private val searchButton: ViewInteraction
+
         get() = onView(ImageButtonMatcher.imageButtonMatches(R.id.searchBtn))
 
     private val restaurantRow: (String) -> ViewInteraction = { restaurantName ->
