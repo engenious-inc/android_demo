@@ -22,6 +22,9 @@ class RestaurantScreen {
     private val menuButton: ViewInteraction
         get() = onView(withText("Menu"))
 
+    private val locationButton: ViewInteraction
+        get() = onView(withText("Location"))
+
     init {
         restaurantOptions.check(matches(isDisplayed()))
     }
@@ -43,5 +46,9 @@ class RestaurantScreen {
     fun openMenu(): RestaurantMenuScreen {
         menuButton.perform(click())
         return RestaurantMenuScreen()
+    }
+
+    fun openMap() {
+        locationButton.perform(click())
     }
 }
