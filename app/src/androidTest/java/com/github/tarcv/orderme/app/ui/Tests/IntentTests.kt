@@ -10,10 +10,11 @@ import android.support.test.espresso.intent.matcher.IntentMatchers.hasAction
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasData
 import android.support.test.espresso.intent.matcher.UriMatchers.hasScheme
 import android.support.test.espresso.intent.rule.IntentsTestRule
-import android.support.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.not
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
