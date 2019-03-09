@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4
 import com.github.tarcv.orderme.app.ui.Screens.DialogScreen
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
+import com.github.tarcv.orderme.app.ui.Screens.WaiterMenuScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
 import org.junit.Rule
 import org.junit.Test
@@ -72,8 +73,8 @@ class QRCodeTest : BaseTest() {
         qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
 
-        val waiterMenuScreen = restaurantScreen.callAWaiter()
-        waiterMenuScreen.bringAMenu()
+        restaurantScreen.callAWaiter()
+        WaiterMenuScreen.Options.MENU.pressOn()
 
         Thread.sleep(1000)
 
