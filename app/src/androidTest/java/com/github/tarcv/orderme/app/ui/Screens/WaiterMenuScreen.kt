@@ -8,8 +8,6 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withText
 
 class WaiterMenuScreen {
-    private val bringAMenu: ViewInteraction
-        get() = onView(withText("Bring a menu"))
 
     private val screenTitle: ViewInteraction
         get() = onView(withText("How waiter can help you?"))
@@ -18,7 +16,21 @@ class WaiterMenuScreen {
         screenTitle.check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    fun bringAMenu() {
-        bringAMenu.perform(click())
+    enum class Options {
+        MENU, BILL, CLEAN, HOOKAH, OTHER;
+
+        fun pressOn() {
+            when (this) {
+                MENU -> findAndPress("Bring a menu")
+                BILL -> findAndPress("Bring the bill")
+                CLEAN -> findAndPress("Clean the table")
+                HOOKAH -> findAndPress("Call a hookah man")
+                OTHER -> findAndPress("Other")
+            }
+        }
+
+        private fun findAndPress(text: String) {
+            onView(withText(text)).perform(click())
+        }
     }
 }
