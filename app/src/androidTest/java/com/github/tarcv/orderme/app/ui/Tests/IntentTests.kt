@@ -49,4 +49,23 @@ class IntentTests : BaseTest() {
                 )
         )
     }
+
+    @Test
+    fun testOpenPhone() {
+        val mockQRCodeScreen = loginLaterAndNavigateToMockQR()
+
+        mockQRCodeScreen.enterQRCode(republiqueQRCode)
+                .submit()
+
+        val restaurantScreen = RestaurantScreen()
+        restaurantScreen.openPhone()
+        sleep(500)
+
+        intended(
+                allOf(
+                        hasAction(equalTo(Intent.ACTION_DIAL)),
+                        hasData(hasScheme("tel"))
+                )
+        )
+    }
 }

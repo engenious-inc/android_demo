@@ -25,6 +25,9 @@ class RestaurantScreen {
     private val locationButton: ViewInteraction
         get() = onView(withText("Location"))
 
+    private val phoneButton: ViewInteraction
+        get() = onView(withText("Phone"))
+
     init {
         restaurantOptions.check(matches(isDisplayed()))
     }
@@ -50,5 +53,9 @@ class RestaurantScreen {
 
     fun openMap() {
         locationButton.perform(click())
+    }
+
+    fun openPhone() {
+        phoneButton.perform(click())
     }
 }
