@@ -1,11 +1,14 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.rule.ActivityTestRule
+import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantSelectScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.lang.Thread.sleep
@@ -20,6 +23,11 @@ class OrderTest : BaseTest() {
     val blackWhiteSaladDish = "BLACK & WHITE SALAD"
     val octopusDish = "OCTOPUS"
     val channelIslandsRockFishDish = "CHANNEL ISLANDS ROCK FISH"
+
+    @Before
+    fun setup() {
+        IdlingRegistry.getInstance().register(IdlingResourceHelper.CountingIdlingResource)
+    }
 
     @Test
     fun testCustomAction() {
@@ -42,8 +50,7 @@ class OrderTest : BaseTest() {
 
         val restaurantScreen = RestaurantScreen()
         val restaurantMenuScreen = restaurantScreen.openMenu()
-        sleep(1000)
-
+//        sleep(1000)
         val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
         sleep(1000)
 
