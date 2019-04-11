@@ -17,10 +17,10 @@ class PlacesTests : BaseTest() {
     @get:Rule
     var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
-    @Before
-    fun setup() {
-        IdlingRegistry.getInstance().register(IdlingResourceHelper.countingIdlingResource)
-    }
+//    @Before
+//    fun setup() {
+//        IdlingRegistry.getInstance().register(IdlingResourceHelper.countingIdlingResource)
+//    }
 
     @Test
     fun testSearchPlace() {

@@ -1,5 +1,6 @@
 package com.github.tarcv.orderme.app
 
+import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.core.ApiClient
 import com.github.tarcv.orderme.core.data.entity.Place
 import io.reactivex.Observable
@@ -17,12 +18,18 @@ class PlacesRepository constructor(
             .share()
 
     init {
+        IdlingResourceHelper.countingIdlingResource.increment()
         source
                 .observeOn(Schedulers.computation())
                 .subscribe({
-                    setPlaces(it)
+                    try {
+                        setPlaces(it)
+                    } finally {
+                        IdlingResourceHelper.countingIdlingResource.decrement()
+                    }
                 }, { e ->
                     Timber.w(e, "Places source signalled error")
+                    IdlingResourceHelper.countingIdlingResource.decrement()
                 })
     }
 
