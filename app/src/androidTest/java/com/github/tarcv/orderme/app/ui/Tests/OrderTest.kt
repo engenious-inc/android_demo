@@ -1,15 +1,11 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
-import android.support.test.espresso.IdlingRegistry
 import android.support.test.rule.ActivityTestRule
-import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantSelectScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
-import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.lang.Thread.sleep

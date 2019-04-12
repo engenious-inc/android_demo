@@ -29,7 +29,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
 @MainThread
@@ -37,7 +36,6 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     @Inject
     lateinit var presenter: HomePresenter
 
-    val myAtomicInteger = AtomicInteger(0)
     val myCountingIdlingResource = CountingIdlingResource("myCountingIdlingResource")
 
     // TODO: consider removing onStop
