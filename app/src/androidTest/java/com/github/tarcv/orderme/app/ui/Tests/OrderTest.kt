@@ -50,7 +50,7 @@ class OrderTest : BaseTest() {
 
         val restaurantScreen = RestaurantScreen()
         val restaurantMenuScreen = restaurantScreen.openMenu()
-//        sleep(1000)
+        sleep(1000)
         val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
         sleep(1000)
 
@@ -67,13 +67,9 @@ class OrderTest : BaseTest() {
         val qrCodeScreen = homeScreen.search()
         qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
-        sleep(1000)
         val restaurantScreen = RestaurantScreen()
         val restaurantMenuScreen = restaurantScreen.openMenu()
-        sleep(1000)
-
         val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
-        sleep(1000)
 
         restaurantSelectScreen.addToCart(colemanFarmsLittleGemsDish)
         price += restaurantSelectScreen.getItemPrice(colemanFarmsLittleGemsDish)
@@ -81,17 +77,12 @@ class OrderTest : BaseTest() {
         price += restaurantSelectScreen.getItemPrice(blackWhiteSaladDish)
         restaurantSelectScreen.addToCart(octopusDish)
         price += restaurantSelectScreen.getItemPrice(octopusDish)
-        sleep(1000)
 
         restaurantMenuScreen.back()
-        sleep(1000)
-
         restaurantMenuScreen.selectItem(menuFish)
-        sleep(1000)
-
         restaurantSelectScreen.addToCart(channelIslandsRockFishDish)
         price += restaurantSelectScreen.getItemPrice(channelIslandsRockFishDish)
-        sleep(1000)
+
         val bucketValue = restaurantSelectScreen.getBucketValue()
         assertEquals(price, bucketValue, 0.0)
     }
