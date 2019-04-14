@@ -36,8 +36,6 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     @Inject
     lateinit var presenter: HomePresenter
 
-    val myCountingIdlingResource = CountingIdlingResource("CountingIdlingResource")
-
     // TODO: consider removing onStop
     private val placesListAdapter: PlacesListAdapter by lazy {
         PlacesListAdapter()
