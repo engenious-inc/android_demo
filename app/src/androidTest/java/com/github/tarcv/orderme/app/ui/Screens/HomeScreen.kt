@@ -20,7 +20,6 @@ import com.github.tarcv.orderme.app.ui.Utilities.CustomFailureHandler
 import com.github.tarcv.orderme.app.ui.Utilities.ImageButtonMatcher
 import com.github.tarcv.orderme.app.ui.Utilities.RecyclerViewItemMatcher
 import org.hamcrest.CoreMatchers.allOf
-import java.lang.Thread.sleep
 
 class HomeScreen {
 
