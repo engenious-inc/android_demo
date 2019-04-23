@@ -4,5 +4,5 @@ import android.support.test.espresso.idling.CountingIdlingResource
 
 object IdlingResourceHelper {
 
-    val CountingIdlingResource = CountingIdlingResource("CountingIdlingResource")
+    val countingIdlingResource = CountingIdlingResource("CountingIdlingResource")
 }

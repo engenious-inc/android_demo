@@ -42,7 +42,7 @@ class RestaurantMenuCategoriesPresenter(val place: Place) {
     }
 
     private fun getCategories() {
-        IdlingResourceHelper.CountingIdlingResource.increment()
+        IdlingResourceHelper.countingIdlingResource.increment()
         apiClient.getMenu(place.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,13 +54,13 @@ class RestaurantMenuCategoriesPresenter(val place: Place) {
         Timber.i("onNext: categories count = ${t.categories.size}")
         categories = t.categories
         isInitialized = true
-        IdlingResourceHelper.CountingIdlingResource.decrement()
         setCategories()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 
     private fun onError(throwable: Throwable) {
         Timber.i("onError")
-        IdlingResourceHelper.CountingIdlingResource.decrement()
         throwable.printStackTrace()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 }

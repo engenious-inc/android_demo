@@ -18,14 +18,18 @@ class PlacesRepository constructor(
             .share()
 
     init {
-        source.doOnEach { IdlingResourceHelper.CountingIdlingResource.increment() }
+        IdlingResourceHelper.countingIdlingResource.increment()
+        source
                 .observeOn(Schedulers.computation())
                 .subscribe({
-                    setPlaces(it)
-                    IdlingResourceHelper.CountingIdlingResource.decrement()
+                    try {
+                        setPlaces(it)
+                    } finally {
+                        IdlingResourceHelper.countingIdlingResource.decrement()
+                    }
                 }, { e ->
                     Timber.w(e, "Places source signalled error")
-                    IdlingResourceHelper.CountingIdlingResource.decrement()
+                    IdlingResourceHelper.countingIdlingResource.decrement()
                 })
     }
 

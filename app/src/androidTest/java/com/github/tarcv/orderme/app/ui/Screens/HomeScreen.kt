@@ -57,7 +57,6 @@ class HomeScreen {
 
     fun search(text: String): HomeScreen {
         searchField.perform(replaceText(text), pressImeActionButton())
-        sleep(1000)
         return this
     }
 

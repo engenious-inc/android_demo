@@ -58,7 +58,7 @@ class RestaurantMenuPresenter(private val category: Category)
     }
 
     private fun getDishes() {
-        IdlingResourceHelper.CountingIdlingResource.increment()
+        IdlingResourceHelper.countingIdlingResource.increment()
         val observable = apiClient.getMenu(category.placeId)
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -67,14 +67,14 @@ class RestaurantMenuPresenter(private val category: Category)
     }
 
     private fun updateDishes(t: GetMenuResponse) {
-        IdlingResourceHelper.CountingIdlingResource.decrement()
         val dishesOfCategory = t.dishes.filter { it.categoryId == category.id }
         view?.setDishes(dishesOfCategory)
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 
     private fun onError(throwable: Throwable) {
         Timber.i("onError")
-        IdlingResourceHelper.CountingIdlingResource.decrement()
         throwable.printStackTrace()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 }

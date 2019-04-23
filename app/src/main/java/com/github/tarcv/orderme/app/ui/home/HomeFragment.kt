@@ -36,6 +36,8 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     @Inject
     lateinit var presenter: HomePresenter
 
+    val myCountingIdlingResource = CountingIdlingResource("myCountingIdlingResource")
+
     // TODO: consider removing onStop
     private val placesListAdapter: PlacesListAdapter by lazy {
         PlacesListAdapter()
@@ -53,7 +55,7 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     override fun wirePlacesSource(source: Observable<List<Place>>) {
         disposer.add(source
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnEach { IdlingResourceHelper.CountingIdlingResource.decrement() }
+                .doOnEach { IdlingResourceHelper.countingIdlingResource.decrement() }
                 .wireToAdapter(
                         placesListAdapter,
                         BiFunction { current, next -> PlaceDiffCallback(current, next) })
