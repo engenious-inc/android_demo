@@ -1,9 +1,23 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
+import android.support.test.espresso.IdlingRegistry
+import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.MockQRCodeScreen
+import org.junit.After
+import org.junit.Before
 
 open class BaseTest {
+
+    @Before
+    fun setup() {
+        IdlingRegistry.getInstance().register(IdlingResourceHelper.countingIdlingResource)
+    }
+
+    @After
+    fun teardown() {
+        IdlingRegistry.getInstance().unregister(IdlingResourceHelper.countingIdlingResource)
+    }
 
     val republiqueQRCode = "3_5"
     val republique = "Republique"

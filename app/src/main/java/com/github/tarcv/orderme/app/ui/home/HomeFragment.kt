@@ -3,6 +3,7 @@ package com.github.tarcv.orderme.app.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.MainThread
+import android.support.test.espresso.idling.CountingIdlingResource
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.github.tarcv.orderme.app.PlaceDiffCallback
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.UpdatableListAdapter
 import com.github.tarcv.orderme.app.UpdatableListHolder
+import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.REQUEST_CODE_QR_SCAN
 import com.github.tarcv.orderme.app.ui.saveOrErrorQrCode
@@ -34,6 +36,8 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     @Inject
     lateinit var presenter: HomePresenter
 
+    val myCountingIdlingResource = CountingIdlingResource("myCountingIdlingResource")
+
     // TODO: consider removing onStop
     private val placesListAdapter: PlacesListAdapter by lazy {
         PlacesListAdapter()
@@ -51,6 +55,7 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     override fun wirePlacesSource(source: Observable<List<Place>>) {
         disposer.add(source
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnEach { IdlingResourceHelper.countingIdlingResource.decrement() }
                 .wireToAdapter(
                         placesListAdapter,
                         BiFunction { current, next -> PlaceDiffCallback(current, next) })

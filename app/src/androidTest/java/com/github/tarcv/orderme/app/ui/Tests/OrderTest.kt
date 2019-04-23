@@ -26,11 +26,11 @@ class OrderTest : BaseTest() {
         val qrCodeScreen = loginLaterAndNavigateToMockQR()
         qrCodeScreen.enterQRCode(republiqueQRCode)
                 .submit()
-        sleep(1000)
+        // sleep(1000)
         val restaurantMenuScreen = RestaurantScreen().openMenu()
-        sleep(1000)
+        // sleep(1000)
         restaurantMenuScreen.selectItem(menuFish)
-        sleep(1000)
+        // sleep(1000)
         RestaurantSelectScreen().getBucketValue()
     }
 
@@ -42,10 +42,7 @@ class OrderTest : BaseTest() {
 
         val restaurantScreen = RestaurantScreen()
         val restaurantMenuScreen = restaurantScreen.openMenu()
-        sleep(1000)
-
         val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
-        sleep(1000)
 
         restaurantSelectScreen.addToCart(octopusDish)
         restaurantSelectScreen.addToCart(colemanFarmsLittleGemsDish)
