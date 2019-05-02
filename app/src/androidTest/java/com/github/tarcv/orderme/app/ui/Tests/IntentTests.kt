@@ -18,7 +18,6 @@ import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.lang.Thread.sleep
 
 class IntentTests : BaseTest() {
 
@@ -40,7 +39,6 @@ class IntentTests : BaseTest() {
 
         val restaurantScreen = RestaurantScreen()
         restaurantScreen.openMap()
-        sleep(500)
 
         intended(
                 allOf(
@@ -59,7 +57,6 @@ class IntentTests : BaseTest() {
 
         val restaurantScreen = RestaurantScreen()
         restaurantScreen.openPhone()
-        sleep(500)
 
         intended(
                 allOf(
