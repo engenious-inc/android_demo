@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.bucket.BucketFragment
 import com.github.tarcv.orderme.app.ui.bucket.OnOrderMadeListener
@@ -152,6 +153,7 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
     }
 
     override fun callWaiter(place: Place, table: Int) {
+        IdlingResourceHelper.countingIdlingResource.increment()
         val created = Utils.getFullDate(Calendar.getInstance().timeInMillis)
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.reason_dialog_tittle)
@@ -160,6 +162,7 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
                 })
                 .create()
                 .show()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 
     override fun onPhoneClicked(place: Place) {
@@ -200,6 +203,7 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
     }
 
     fun callAWaiterRequest(placeId: Int, tableId: Int, created: String, reason: Int) {
+        IdlingResourceHelper.countingIdlingResource.increment()
         apiClient.callWaiter(CallWaiterRequest(placeId, tableId, created, reason))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -215,6 +219,7 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
                 .setPositiveButton(R.string.ok, { dialogInterface, i -> dialogInterface.cancel() })
                 .create()
                 .show()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 
     private fun onError(throwable: Throwable) {
@@ -226,6 +231,7 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
                 .setNegativeButton(R.string.ok) { dialog, _ -> dialog.cancel() }
                 .create()
                 .show()
+        IdlingResourceHelper.countingIdlingResource.decrement()
     }
 
     override fun onReservationMade() {

@@ -76,8 +76,6 @@ class QRCodeTest : BaseTest() {
         restaurantScreen.callAWaiter()
         WaiterMenuScreen.Options.MENU.pressOn()
 
-        Thread.sleep(1000)
-
         DialogScreen().isSuccessDisplayed()
     }
 
