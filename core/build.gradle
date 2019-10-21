@@ -7,6 +7,7 @@ apply from: "../ktlint.gradle"
 
 android {
     compileSdkVersion 27
+    buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion 21
         versionCode 1
