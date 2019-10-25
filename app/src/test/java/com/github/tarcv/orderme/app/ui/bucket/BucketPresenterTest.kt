@@ -18,7 +18,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest
 import org.powermock.modules.junit4.PowerMockRunner
 import org.powermock.reflect.Whitebox
 
-
 @RunWith(PowerMockRunner::class)
 @PrepareForTest(BucketPresenter::class)
 class BucketPresenterTest {
