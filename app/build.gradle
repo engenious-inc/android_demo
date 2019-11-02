@@ -14,7 +14,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.shazam.fork:fork-gradle-plugin:3.7.0-SNAPSHOT'
+        classpath 'com.shazam.fork:fork-gradle-plugin:3.10.0'
     }
 }
 
@@ -22,7 +22,7 @@ apply plugin: 'com.shazam.fork'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.github.tarcv.orderme.app"
         minSdkVersion 21
@@ -90,14 +90,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
 
-kapt {
-    generateStubs = true
-}
-
 fork {
     title = "My acceptance tests"
     testPackage = "com.github.tarcv.orderme.app.ui"
-    fallbackToScreenshots = true
+
     poolingStrategy {
         computed {
             characteristic = "sw"
