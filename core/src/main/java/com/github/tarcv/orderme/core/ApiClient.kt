@@ -22,7 +22,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 /**
  * TODO: consider implementing these methods as data classes serializer/deserializers
  */
-class ApiClient(private var token: String, baseUrl: String) {
+open class ApiClient(private var token: String, baseUrl: String) {
     private val apiService: ApiService
 
     init {
