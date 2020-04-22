@@ -14,19 +14,19 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.shazam.fork:fork-gradle-plugin:3.10.0'
+// TODO:        classpath 'com.shazam.fork:fork-gradle-plugin:3.10.0'
     }
 }
 
-apply plugin: 'com.shazam.fork'
+// TODO: apply plugin: 'com.shazam.fork'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.github.tarcv.orderme.app"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -97,6 +97,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
 
+/*
+TODO:
 fork {
     title = "My acceptance tests"
     testPackage = "com.github.tarcv.orderme.app.ui"
@@ -110,3 +112,4 @@ fork {
         }
     }
 }
+ */
