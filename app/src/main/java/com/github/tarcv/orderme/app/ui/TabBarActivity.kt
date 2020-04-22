@@ -1,12 +1,12 @@
 package com.github.tarcv.orderme.app.ui
 
 import android.os.Bundle
-import android.support.annotation.VisibleForTesting
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.annotation.VisibleForTesting
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.ui.base.BaseFragmentActivity
 import com.github.tarcv.orderme.app.ui.order.OrderFragment
@@ -89,10 +89,10 @@ class TabBarActivity : BaseFragmentActivity() {
 }
 
 class TabCollectionPagerAdapter(
-    supportFragmentManager: FragmentManager,
-    private var reservationsFragment: ReservationsFragment,
-    private var centerFragmentHolder: CenterFragmentHolder,
-    private var orderFragment: OrderFragment
+        supportFragmentManager: FragmentManager,
+        private var reservationsFragment: ReservationsFragment,
+        private var centerFragmentHolder: CenterFragmentHolder,
+        private var orderFragment: OrderFragment
 )
     : FragmentStatePagerAdapter(supportFragmentManager) {
     override fun getItem(position: Int): Fragment? =

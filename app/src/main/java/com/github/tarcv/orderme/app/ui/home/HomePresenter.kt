@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.ui.home
 
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
 import com.github.tarcv.orderme.app.PlacesRepository
 import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.core.data.entity.Place

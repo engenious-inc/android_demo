@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.blikoon.qrcodescanner.QrCodeActivity
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.App.Companion.tryParseTable

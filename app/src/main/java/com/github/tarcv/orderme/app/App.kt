@@ -17,11 +17,11 @@ open class App : Application() {
             return tryParseTable(tableId)
         }
 
-        fun tryParseTable(tableId: String): Table? {
-            if (tableId == "") {
-                return null
+        fun tryParseTable(tableId: String?): Table? {
+            return if (tableId.isNullOrEmpty()) {
+                null
             } else {
-                return placeRegex.matchEntire(tableId)
+                placeRegex.matchEntire(tableId)
                         ?.destructured
                         ?.let {
                             val (placeStr, tableStr) = it

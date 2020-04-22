@@ -5,8 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.annotation.VisibleForTesting
-import android.support.v4.app.Fragment
+import androidx.annotation.VisibleForTesting
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -147,7 +147,8 @@ class CenterFragmentHolder : LifecycleLogFragment(), OnRestaurantClickListener,
         val fragment = mStack.last
         childFragmentManager.beginTransaction()
                 .remove(
-                    childFragmentManager.findFragmentById(R.id.center_fragment_holder_framelayout))
+                    childFragmentManager.findFragmentById(R.id.center_fragment_holder_framelayout)!!
+                )
                 .add(R.id.center_fragment_holder_framelayout, fragment)
                 .commit()
     }

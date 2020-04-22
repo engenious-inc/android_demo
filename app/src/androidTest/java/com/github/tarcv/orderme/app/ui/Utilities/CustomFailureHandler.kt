@@ -1,7 +1,7 @@
 package com.github.tarcv.orderme.app.ui.Utilities
 
-import android.support.test.espresso.EspressoException
-import android.support.test.espresso.FailureHandler
+import androidx.test.espresso.EspressoException
+import androidx.test.espresso.FailureHandler
 import android.view.View
 import org.hamcrest.Matcher
 

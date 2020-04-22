@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.di
 
-import android.support.test.espresso.idling.CountingIdlingResource
+import androidx.test.espresso.idling.CountingIdlingResource
 
 object IdlingResourceHelper {
 

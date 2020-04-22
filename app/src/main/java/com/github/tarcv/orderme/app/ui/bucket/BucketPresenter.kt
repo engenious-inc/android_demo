@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.ui.bucket
 
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.App.Companion.tryGetTable
 import com.github.tarcv.orderme.app.Bucket

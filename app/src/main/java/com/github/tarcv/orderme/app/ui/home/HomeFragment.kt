@@ -2,10 +2,10 @@ package com.github.tarcv.orderme.app.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.MainThread
-import android.support.test.espresso.idling.CountingIdlingResource
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.annotation.MainThread
+import androidx.test.espresso.idling.CountingIdlingResource
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
