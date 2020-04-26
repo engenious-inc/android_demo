@@ -14,7 +14,7 @@ abstract class LifecycleLogFragment : Fragment() {
         Timber.i("ctor")
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Timber.tag(this::class.java.simpleName)
         Timber.i("onAttach")
