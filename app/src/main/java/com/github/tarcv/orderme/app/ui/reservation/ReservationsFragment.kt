@@ -1,9 +1,9 @@
 package com.github.tarcv.orderme.app.ui.reservation
 
 import android.os.Bundle
-import android.support.annotation.MainThread
-import android.support.design.widget.TabLayout
-import android.support.v7.widget.LinearLayoutManager
+import androidx.annotation.MainThread
+import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

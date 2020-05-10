@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
-import android.support.test.rule.ActivityTestRule
+import androidx.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantSelectScreen

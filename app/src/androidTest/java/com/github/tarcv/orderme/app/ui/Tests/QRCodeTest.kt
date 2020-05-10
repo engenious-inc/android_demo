@@ -1,7 +1,6 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.ui.Screens.DialogScreen
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
@@ -9,9 +8,7 @@ import com.github.tarcv.orderme.app.ui.Screens.WaiterMenuScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class QRCodeTest : BaseTest() {
 
     @get:Rule

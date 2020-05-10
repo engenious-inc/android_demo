@@ -2,7 +2,7 @@ package com.github.tarcv.orderme.app.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ abstract class LifecycleLogFragment : Fragment() {
         Timber.i("ctor")
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         Timber.tag(this::class.java.simpleName)
         Timber.i("onAttach")

@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.ui.reservation
 
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
 import android.util.Log
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.core.ApiClient

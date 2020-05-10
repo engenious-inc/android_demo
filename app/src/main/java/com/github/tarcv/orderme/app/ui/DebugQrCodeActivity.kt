@@ -3,7 +3,7 @@ package com.github.tarcv.orderme.app.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.tarcv.orderme.app.R
 import kotlinx.android.synthetic.main.debug_qr_code.*
 

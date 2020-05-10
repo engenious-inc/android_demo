@@ -37,7 +37,7 @@ class AppModule(private val context: Context) {
     @Provides
     @Singleton
     fun providesApiClient(@BaseUrl baseUrl: String) = ApiClient(
-        App.sharedPreferences.getString(App.LOGIN_TOKEN, ""),
+        App.sharedPreferences.getString(App.LOGIN_TOKEN, "") ?: "",
         baseUrl
     )
 

@@ -1,6 +1,6 @@
 package com.github.tarcv.orderme.app.ui.Tests
 
-import android.support.test.espresso.IdlingRegistry
+import androidx.test.espresso.IdlingRegistry
 import com.github.tarcv.orderme.app.di.IdlingResourceHelper
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
 import com.github.tarcv.orderme.app.ui.Screens.MockQRCodeScreen

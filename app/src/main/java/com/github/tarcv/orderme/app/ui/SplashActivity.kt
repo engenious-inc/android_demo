@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity() {
 
         App.component.inject(this)
 
-        if (App.sharedPreferences.getString(App.LOGIN_TOKEN, "").isNotEmpty()) {
+        if (! App.sharedPreferences.getString(App.LOGIN_TOKEN, "").isNullOrEmpty()) {
             startActivity()
         }
 
@@ -63,7 +63,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun updateButtonText() {
-        if (App.sharedPreferences.getString(App.LOGIN_TOKEN, "").isNotEmpty()) {
+        if (! App.sharedPreferences.getString(App.LOGIN_TOKEN, "").isNullOrEmpty()) {
             login_later_button.text = this.getString(R.string.continue_logged_in)
         } else {
             login_later_button.text = this.getString(R.string.login_later)
