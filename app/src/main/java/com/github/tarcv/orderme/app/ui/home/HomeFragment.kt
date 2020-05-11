@@ -16,12 +16,12 @@ import com.github.tarcv.orderme.app.PlaceDiffCallback
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.UpdatableListAdapter
 import com.github.tarcv.orderme.app.UpdatableListHolder
-import com.github.tarcv.orderme.app.di.IdlingResourceHelper
+import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.wireToAdapter
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.REQUEST_CODE_QR_SCAN
 import com.github.tarcv.orderme.app.ui.saveOrErrorQrCode
 import com.github.tarcv.orderme.app.ui.startQrCodeActivity
-import com.github.tarcv.orderme.app.wireToAdapter
 import com.github.tarcv.orderme.core.data.entity.Place
 import com.jakewharton.rxbinding2.widget.queryTextChanges
 import io.reactivex.Observable
@@ -55,7 +55,7 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     override fun wirePlacesSource(source: Observable<List<Place>>) {
         disposer.add(source
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnEach { IdlingResourceHelper.countingIdlingResource.decrement() }
+                .doOnEach { Utils.countingIdlingResource.decrement() }
                 .wireToAdapter(
                         placesListAdapter,
                         BiFunction { current, next -> PlaceDiffCallback(current, next) })

@@ -94,6 +94,10 @@ dependencies {
     implementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
     androidTestImplementation "androidx.test:rules:$test_version"
+    androidTestImplementation('com.schibsted.spain:barista:2.9.0') {
+        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+    }
+    androidTestImplementation 'io.fabric8:mockwebserver:0.1.0'
 }
 
 /*

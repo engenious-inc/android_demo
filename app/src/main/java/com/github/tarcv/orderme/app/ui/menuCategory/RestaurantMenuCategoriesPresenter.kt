@@ -1,7 +1,7 @@
 package com.github.tarcv.orderme.app.ui.menuCategory
 
 import com.github.tarcv.orderme.app.App
-import com.github.tarcv.orderme.app.di.IdlingResourceHelper
+import com.github.tarcv.orderme.app.Utils
 import com.github.tarcv.orderme.core.ApiClient
 import com.github.tarcv.orderme.core.data.entity.Category
 import com.github.tarcv.orderme.core.data.entity.Place
@@ -42,7 +42,7 @@ class RestaurantMenuCategoriesPresenter(val place: Place) {
     }
 
     private fun getCategories() {
-        IdlingResourceHelper.countingIdlingResource.increment()
+        Utils.countingIdlingResource.increment()
         apiClient.getMenu(place.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,12 +55,12 @@ class RestaurantMenuCategoriesPresenter(val place: Place) {
         categories = t.categories
         isInitialized = true
         setCategories()
-        IdlingResourceHelper.countingIdlingResource.decrement()
+        Utils.countingIdlingResource.decrement()
     }
 
     private fun onError(throwable: Throwable) {
         Timber.i("onError")
         throwable.printStackTrace()
-        IdlingResourceHelper.countingIdlingResource.decrement()
+        Utils.countingIdlingResource.decrement()
     }
 }
