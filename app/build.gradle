@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'com.shazam.fork'
 apply from: "../ktlint.gradle"
 
 buildscript {
@@ -10,15 +10,12 @@ buildscript {
         google()
         jcenter()
         mavenLocal()
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 
     dependencies {
-// TODO:        classpath 'com.shazam.fork:fork-gradle-plugin:3.10.0'
+        classpath 'com.shazam.fork:fork-gradle-plugin:3.10.0'
     }
 }
-
-// TODO: apply plugin: 'com.shazam.fork'
 
 android {
     compileSdkVersion 29
@@ -81,7 +78,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-core-utils'
     }
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:2.7.22'
     testImplementation "org.powermock:powermock-module-junit4:2.0.2"
     testImplementation "org.powermock:powermock-module-junit4-rule:2.0.2"
@@ -100,8 +97,6 @@ dependencies {
     androidTestImplementation 'io.fabric8:mockwebserver:0.1.0'
 }
 
-/*
-TODO:
 fork {
     title = "My acceptance tests"
     testPackage = "com.github.tarcv.orderme.app.ui"
@@ -115,4 +110,3 @@ fork {
         }
     }
 }
- */
