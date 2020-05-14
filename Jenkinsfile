@@ -24,15 +24,14 @@ pipeline {
                  sh '$ANDROID_HOME/platform-tools/adb uninstall com.github.tarcv.orderme.app.test || true'
                  sh './gradlew --stop'
                  sh './gradlew clean forkDebugAndroidTest'}
+                }
             }
-        }
-        }
-        post {
-          always {
-          script {sh 'tar -czvf fork-report.tar.gz app/build/reports/fork/debugAndroidTest'}
-              archiveArtifacts artifacts: 'fork-report.*', fingerprint: true
-           junit 'app/build/reports/fork/debugAndroidTest/tests/**/*.xml'
-           publishHTML(target: [
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'fork-report.*', fingerprint: true
+            junit 'app/build/reports/fork/debugAndroidTest/tests/**/*.xml'
+            publishHTML(target: [
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
@@ -40,7 +39,7 @@ pipeline {
             reportFiles: 'index.html',
             reportName: "HTML Report"
            ])
-          }
+        }
     }
 }
 
