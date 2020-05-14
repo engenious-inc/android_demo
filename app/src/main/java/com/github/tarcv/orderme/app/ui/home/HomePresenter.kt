@@ -2,7 +2,7 @@ package com.github.tarcv.orderme.app.ui.home
 
 import androidx.annotation.MainThread
 import com.github.tarcv.orderme.app.PlacesRepository
-import com.github.tarcv.orderme.app.di.IdlingResourceHelper
+import com.github.tarcv.orderme.app.Utils
 import com.github.tarcv.orderme.core.data.entity.Place
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -41,7 +41,7 @@ class HomePresenter constructor(
                         fullList, filter ->
                     Pair(fullList, filter)
                 })
-                .doOnEach { IdlingResourceHelper.countingIdlingResource.increment() }
+                .doOnEach { Utils.countingIdlingResource.increment() }
                 .observeOn(Schedulers.computation())
                 .map { (fullList, filter) ->
                     if (filter.isEmpty())

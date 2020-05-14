@@ -1,9 +1,12 @@
 package com.github.tarcv.orderme.app
 
+import androidx.test.espresso.idling.CountingIdlingResource
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
 object Utils {
+
+    val countingIdlingResource = CountingIdlingResource("CountingIdlingResource")
 
     fun getDate(date: Long): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")

@@ -1,0 +1,110 @@
+{
+  "categories": [
+    {
+      "id": 12,
+      "name": "SALADS AND VEGETABLES",
+      "placeId": 3
+    },
+    {
+      "id": 13,
+      "name": "FISH",
+      "placeId": 3
+    },
+    {
+      "id": 14,
+      "name": "PASTA",
+      "placeId": 3
+    },
+    {
+      "id": 15,
+      "name": "MEAT",
+      "placeId": 3
+    }
+  ],
+  "dishes": [
+    {
+      "categoryId": 12,
+      "price": 18,
+      "id": 8,
+      "name": "COLEMAN FARMS LITTLE GEMS",
+      "description": "avocados, breakfast radish, toasted seeds, green goddess dressing"
+    },
+    {
+      "categoryId": 12,
+      "price": 34,
+      "id": 9,
+      "name": "BLACK & WHITE SALAD",
+      "description": "black winter truffles, endive, hearts of palm, sunchokes, creme fraiche, hazelnuts, parmesan"
+    },
+    {
+      "categoryId": 12,
+      "price": 25,
+      "id": 10,
+      "name": "OCTOPUS",
+      "description": "arnett farms cara cara oranges, cabbage, pistachios, chile, lime"
+    },
+    {
+      "categoryId": 13,
+      "price": 36,
+      "id": 11,
+      "name": "CHANNEL ISLANDS ROCK FISH",
+      "description": "wild mushrooms, sugar snap peas, gnocchi"
+    },
+    {
+      "categoryId": 14,
+      "price": 26,
+      "id": 12,
+      "name": "BUCATINI",
+      "description": "taylor bay manila clams"
+    },
+    {
+      "categoryId": 14,
+      "price": 26,
+      "id": 13,
+      "name": "ENGLISH PEA AGNOLOTTI",
+      "description": "nigel's pancetta, goat cheese, mint"
+    },
+    {
+      "categoryId": 14,
+      "price": 39,
+      "id": 14,
+      "name": "MAFALDINE",
+      "description": "maine lobster, santa barbara uni"
+    },
+    {
+      "categoryId": 15,
+      "price": 18,
+      "id": 15,
+      "name": "COOK RANCH PIG'S FEET",
+      "description": "de puy lentils, bacon, frisée, farm egg"
+    },
+    {
+      "categoryId": 15,
+      "price": 32,
+      "id": 16,
+      "name": "SONOMA DUCK BREAST",
+      "description": "sweet potato, roasted beets, blueberry-peppercorn sauce"
+    },
+    {
+      "categoryId": 15,
+      "price": 36,
+      "id": 17,
+      "name": "BEEF SHORT RIB",
+      "description": "grist and toll black barley, porcini mushrooms, roasted carrots, dijon mustard"
+    },
+    {
+      "categoryId": 15,
+      "price": 45,
+      "id": 18,
+      "name": "PRIME BEEF FILET",
+      "description": "roasted celery root, parsnips, wild mushroom bordelaise"
+    },
+    {
+      "categoryId": 15,
+      "price": 95,
+      "id": 19,
+      "name": "TOURNEDOS ROSSINI",
+      "description": "prime beef filet, black winter truffles, foie gras"
+    }
+  ]
+}

@@ -1,78 +1,120 @@
-package com.github.tarcv.orderme.app.ui.Tests
+package com.github.tarcv.orderme.app.ui.tests
 
 import androidx.test.rule.ActivityTestRule
-import com.github.tarcv.orderme.app.ui.Screens.LoginScreen
-import com.github.tarcv.orderme.app.ui.Screens.RestaurantScreen
-import com.github.tarcv.orderme.app.ui.Screens.RestaurantSelectScreen
 import com.github.tarcv.orderme.app.ui.SplashActivity
-import org.junit.Assert.assertEquals
+import com.github.tarcv.orderme.app.ui.robots.restaurantList
+import com.github.tarcv.orderme.app.ui.robots.restaurant
+import com.github.tarcv.orderme.app.ui.robots.qrCode
+import com.github.tarcv.orderme.app.ui.robots.menuItem
+import com.github.tarcv.orderme.app.ui.robots.menuCategories
+import com.github.tarcv.orderme.app.ui.robots.bucket
+import com.github.tarcv.orderme.app.ui.robots.orders
+import com.github.tarcv.orderme.app.ui.robots.login
+import com.github.tarcv.orderme.app.ui.robots.reservation
+import com.github.tarcv.orderme.app.ui.robots.reservations
+import com.github.tarcv.orderme.app.ui.robots.popUp
 import org.junit.Rule
 import org.junit.Test
 
 class OrderTest : BaseTest() {
-
     @get:Rule
-    var mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
-    val menuSaladsAndVegetables = "SALADS AND VEGETABLES"
-    val menuFish = "FISH"
-    val colemanFarmsLittleGemsDish = "COLEMAN FARMS LITTLE GEMS"
-    val blackWhiteSaladDish = "BLACK & WHITE SALAD"
-    val octopusDish = "OCTOPUS"
-    val channelIslandsRockFishDish = "CHANNEL ISLANDS ROCK FISH"
+    val mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
+
+    private val comment = "San Jose"
+    private val phoneNumber = "1111111"
+    private val numberOfPeople = "4"
+    private val orderDate = "2020-04-27"
+    private val time = "02:04"
+    private val bucketTotal = "77.0"
+    private val reservationDate = "2020-06-27"
+    private val restaurantName = "Republique"
 
     @Test
-    fun testCustomAction() {
-        val qrCodeScreen = loginLaterAndNavigateToMockQR()
-        qrCodeScreen.enterQRCode(republiqueQRCode)
-                .submit()
+    fun completeOrderFlowForRepublique() {
+        setupMockData()
+        login {
+            mockFBLogin()
+        }
 
-        val restaurantMenuScreen = RestaurantScreen().openMenu()
+        restaurantList {
+            tapOnQrCodeButton()
+        }
 
-        restaurantMenuScreen.selectItem(menuFish)
+        qrCode {
+            typeInNewQrCode(republiqueQR)
+            tapOnSubmitButton()
+        }
 
-        RestaurantSelectScreen().getBucketValue()
+        restaurant {
+            tapOnMenuOption()
+        }
+
+        menuCategories {
+            tapSaladsAndVegetables()
+        }
+
+        menuItem {
+            tapOnPlusButton(colemanFarmsLittleGems)
+            tapOnPlusButton(blackAndWhiteSalad)
+            tapOnPlusButton(octopus)
+            tapOnShoppingCart()
+        }
+
+        bucket {
+            typeInComments(comment)
+            tapOnAccept()
+        }
+
+        popUp {
+            checkOrderStatus()
+            tapOkButton()
+        }
+
+        restaurant {
+            tapOnOrders()
+        }
+
+        orders {
+            checkOrderIsDisplayed(restaurantName, orderDate, time, bucketTotal)
+        }
     }
 
     @Test
-    fun clickOnPlusButton() {
-        val qrCodeScreen = loginLaterAndNavigateToMockQR()
-        qrCodeScreen.enterQRCode(republiqueQRCode)
-                .submit()
+    fun restaurantReservationFlow() {
+        setupMockData()
+        login {
+            mockFBLogin()
+        }
 
-        val restaurantScreen = RestaurantScreen()
-        val restaurantMenuScreen = restaurantScreen.openMenu()
-        val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
+        restaurantList {
+            tapOnQrCodeButton()
+        }
 
-        restaurantSelectScreen.addToCart(octopusDish)
-        restaurantSelectScreen.addToCart(colemanFarmsLittleGemsDish)
-        restaurantSelectScreen.addToCart(octopusDish)
-    }
+        qrCode {
+            typeInNewQrCode(republiqueQR)
+            tapOnSubmitButton()
+        }
 
-    @Test
-    fun cartSumValidator() {
-        var price = 0.0
-        val loginScreen = LoginScreen()
-        val homeScreen = loginScreen.loginLater()
-        val qrCodeScreen = homeScreen.search()
-        qrCodeScreen.enterQRCode(republiqueQRCode)
-                .submit()
-        val restaurantScreen = RestaurantScreen()
-        val restaurantMenuScreen = restaurantScreen.openMenu()
-        val restaurantSelectScreen = restaurantMenuScreen.selectItem(menuSaladsAndVegetables)
+        restaurant {
+            tapOnReservation()
+        }
 
-        restaurantSelectScreen.addToCart(colemanFarmsLittleGemsDish)
-        price += restaurantSelectScreen.getItemPrice(colemanFarmsLittleGemsDish)
-        restaurantSelectScreen.addToCart(blackWhiteSaladDish)
-        price += restaurantSelectScreen.getItemPrice(blackWhiteSaladDish)
-        restaurantSelectScreen.addToCart(octopusDish)
-        price += restaurantSelectScreen.getItemPrice(octopusDish)
+        reservation {
+            typeNumberOfPeople(numberOfPeople)
+            typePhoneNumber(phoneNumber)
+            selectDate(reservationDate)
+            tapBookButton()
+        }
 
-        restaurantMenuScreen.back()
-        restaurantMenuScreen.selectItem(menuFish)
-        restaurantSelectScreen.addToCart(channelIslandsRockFishDish)
-        price += restaurantSelectScreen.getItemPrice(channelIslandsRockFishDish)
+        popUp {
+            checkReservationSuccessMessage()
+            tapOkButton()
+        }
 
-        val bucketValue = restaurantSelectScreen.getBucketValue()
-        assertEquals(price, bucketValue, 0.0)
+        reservations {
+            tapOnReservations()
+            tapFutureReservations()
+            isReservationDisplayed(restaurantName, reservationDate, time)
+        }
     }
 }

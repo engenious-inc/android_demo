@@ -89,10 +89,10 @@ class TabBarActivity : BaseFragmentActivity() {
 }
 
 class TabCollectionPagerAdapter(
-        supportFragmentManager: FragmentManager,
-        private var reservationsFragment: ReservationsFragment,
-        private var centerFragmentHolder: CenterFragmentHolder,
-        private var orderFragment: OrderFragment
+    supportFragmentManager: FragmentManager,
+    private var reservationsFragment: ReservationsFragment,
+    private var centerFragmentHolder: CenterFragmentHolder,
+    private var orderFragment: OrderFragment
 )
     : FragmentStatePagerAdapter(supportFragmentManager) {
     override fun getItem(position: Int): Fragment? =
