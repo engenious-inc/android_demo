@@ -16,6 +16,11 @@ pipeline {
                 sh './gradlew clean assembleDebug assembleAndroidTest'
             }
         }
+        stage('Run unit tests') {
+            steps {
+                sh './gradlew clean testDebugUnitTest'
+            }
+        }
         stage('Run UI tests') {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
