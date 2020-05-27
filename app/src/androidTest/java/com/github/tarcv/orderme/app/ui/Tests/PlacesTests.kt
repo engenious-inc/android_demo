@@ -1,5 +1,4 @@
-
-package com.github.tarcv.orderme.app.ui.Tests
+package com.github.tarcv.orderme.app.ui.tests
 
 import androidx.test.rule.ActivityTestRule
 import com.github.tarcv.orderme.app.ui.Screens.LoginScreen

@@ -1,4 +1,4 @@
-package com.github.tarcv.orderme.app.ui.Tests
+package com.github.tarcv.orderme.app.ui.tests
 
 import androidx.test.espresso.IdlingRegistry
 import com.github.tarcv.orderme.app.di.IdlingResourceHelper
