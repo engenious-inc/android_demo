@@ -33,7 +33,6 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: 'fork-report.*', fingerprint: true
             junit 'app/build/reports/fork/debugAndroidTest/tests/**/*.xml'
             publishHTML(target: [
             allowMissing: false,
