@@ -11,11 +11,6 @@ pipeline {
                 sh './gradlew clean ktlint'
             }
         }
-        stage('build') {
-            steps {
-                sh './gradlew clean assembleDebug assembleAndroidTest'
-            }
-        }
         stage('Run unit tests') {
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
