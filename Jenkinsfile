@@ -18,7 +18,9 @@ pipeline {
         }
         stage('Run unit tests') {
             steps {
-                sh './gradlew clean testDebugUnitTest'
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh './gradlew clean testDebugUnitTest'
+                }
             }
         }
         stage('Run UI tests') {
