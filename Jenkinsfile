@@ -11,28 +11,25 @@ pipeline {
                 sh './gradlew clean ktlint'
             }
         }
-        stage('build') {
-            steps {
-                sh './gradlew clean assembleDebug assembleAndroidTest'
-            }
-        }
         stage('Run unit tests') {
             steps {
-                timeout(time: 10, unit: 'MINUTES') {
+                timeout(time: 5, unit: 'MINUTES') {
+                    sh './gradlew --stop'
                     sh './gradlew clean testDebugUnitTest'
                 }
             }
         }
         stage('Run UI tests') {
             steps {
-                timeout(time: 15, unit: 'MINUTES') {
-                 sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                 sh '$ANDROID_HOME/platform-tools/adb uninstall com.github.tarcv.orderme.app || true'
-                 sh '$ANDROID_HOME/platform-tools/adb uninstall com.github.tarcv.orderme.app.test || true'
-                 sh './gradlew --stop'
-                 sh './gradlew clean forkDebugAndroidTest'}
-                }
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
+                    sh '$ANDROID_HOME/platform-tools/adb uninstall com.github.tarcv.orderme.app || true'
+                    sh '$ANDROID_HOME/platform-tools/adb uninstall com.github.tarcv.orderme.app.test || true'
+                    sh './gradlew --stop'
+                    sh './gradlew clean forkDebugAndroidTest'
+                 }
             }
+        }
     }
     post {
         always {
