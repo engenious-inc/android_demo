@@ -10,14 +10,14 @@ pipeline {
                 parallel(
                     ktlint: {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
-                        sh './gradlew clean ktlint'
+                        sh './gradlew ktlint'
                     },
                     unit: {
-                        sh './gradlew clean testDebugUnitTest'
+                        sh './gradlew testDebugUnitTest'
                     },
                     espresso: {
                         sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                        sh './gradlew clean forkDebugAndroidTest'
+                        sh './gradlew forkDebugAndroidTest'
                     }
                     )
                     }
