@@ -17,7 +17,7 @@ pipeline {
             stage('Unit tests') {
                     agent {
                         docker {
-                            image 'eng/android-ci:28.0.3'
+                            image 'javiersantos/android-ci:28.0.3'
                         }
                     }
                     steps {
