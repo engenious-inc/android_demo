@@ -12,7 +12,7 @@ pipeline {
                 sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean ktlint'
             },
-            Unit-Tests: {
+            Unit: {
               sh './gradlew clean testDebugUnitTest'
             },
       Espresso: {
