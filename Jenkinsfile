@@ -38,7 +38,7 @@ pipeline {
                         }
                     steps {
                                 sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                                sh './gradlew clean forkDebugAndroidTest
+                                sh './gradlew clean forkDebugAndroidTest'
                 }
                 }
     }
