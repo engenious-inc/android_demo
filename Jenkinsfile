@@ -1,27 +1,29 @@
 pipeline {
-    agent {
-        docker {
-            image 'javiersantos/android-ci:28.0.3'
-        }
-    }
+    agent none
     stages {
+    parallel {
         stage('Run ktlint and Unit tests') {
+            agent {
+                docker {
+                    image 'javiersantos/android-ci:28.0.3'
+                }
+            }
             steps {
-                parallel(
-                    ktlint: {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                         sh './gradlew ktlint'
-                    },
-                    unit: {
-                        sh './gradlew testDebugUnitTest'
-                    },
-                    espresso: {
-                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                        sh './gradlew forkDebugAndroidTest'
-                    }
-                    )
                     }
             }
+        stage('Unit tests')
+                    agent {
+                        docker {
+                            image 'eng/android-ci:28.0.3'
+                        }
+                    }
+                                steps {
+                                            sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                                            sh './gradlew clean testDebugUnitTest'
+                                        }
+        }
     }
     post {
         always {
