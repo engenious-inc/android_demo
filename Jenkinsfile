@@ -14,7 +14,7 @@ pipeline {
                         sh './gradlew ktlint'
                     }
             }
-            stage('Unit tests')
+            stage('Unit tests') {
                     agent {
                         docker {
                             image 'eng/android-ci:28.0.3'
@@ -24,6 +24,7 @@ pipeline {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                         sh './gradlew clean testDebugUnitTest'
                     }
+             }
         }
         }
     }
