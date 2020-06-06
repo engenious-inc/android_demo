@@ -23,6 +23,7 @@ pipeline {
       )
     }
     }
+    }
     post {
         always {
             junit 'app/build/reports/fork/debugAndroidTest/tests/**/*.xml'
@@ -36,5 +37,4 @@ pipeline {
            ])
         }
     }
-}
 }
