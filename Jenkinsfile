@@ -6,21 +6,41 @@ pipeline {
     }
     stages {
         stage('Run tests') {
-        steps {
-            parallel(
-            ktlint: {
+            parallel {
+                stage('Ktlint') {
+                 agent {
+                        docker {
+                            image 'javiersantos/android-ci:28.0.3'
+                        }
+                    }
+                steps {
                 sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean ktlint'
-            },
-            Unit: {
-              sh './gradlew clean testDebugUnitTest'
-            },
-      Espresso: {
-            sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-            sh './gradlew --stop'
-            sh './gradlew clean forkDebugAndroidTest'
-      }
-      )
+            }
+            }
+                    stage('Unit') {
+                     agent {
+                            docker {
+                                image 'javiersantos/android-ci:28.0.3'
+                            }
+                        }
+                    steps {
+                    sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                    sh './gradlew clean testDebugUnitTest''
+                }
+                }
+
+                    stage('Espresso') {
+                     agent {
+                            docker {
+                                image 'javiersantos/android-ci:28.0.3'
+                            }
+                        }
+                    steps {
+                                sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
+                                sh './gradlew clean forkDebugAndroidTest
+                }
+                }
     }
     }
     }
