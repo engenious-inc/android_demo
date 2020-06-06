@@ -1,6 +1,7 @@
 pipeline {
     agent none
     stages {
+    stage('Run Test') {
     parallel {
         stage('Run ktlint and Unit tests') {
             agent {
@@ -23,6 +24,7 @@ pipeline {
                                             sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                                             sh './gradlew clean testDebugUnitTest'
                                         }
+        }
         }
     }
     post {
