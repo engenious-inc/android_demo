@@ -11,7 +11,7 @@ pipeline {
                     ktlint: {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                         sh './gradlew clean ktlint'
-                    }
+                    },
                     unit: {
                         sh './gradlew clean testDebugUnitTest'
                     }
