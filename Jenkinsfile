@@ -17,7 +17,6 @@ pipeline {
                     },
                     espresso: {
                         sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                        sh './gradlew --stop'
                         sh './gradlew clean forkDebugAndroidTest'
                     }
                     )
