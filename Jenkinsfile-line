@@ -5,23 +5,29 @@ pipeline {
         }
     }
     stages {
-        stage('Run tests') {
-        steps {
-            parallel(
-            ktlint: {
+        stage('ktlint') {
+            steps {
                 sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean ktlint'
-            },
-            Unit Tests: {
-              sh './gradlew clean testDebugUnitTest'
-            },
-      Espresso: {
-            sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-            sh './gradlew --stop'
-            sh './gradlew clean forkDebugAndroidTest'
-      }
-      )
-    }
+            }
+        }
+        stage('Run unit tests') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    sh './gradlew --stop'
+                    sh './gradlew clean testDebugUnitTest'
+                }
+            }
+        }
+        stage('Run UI tests') {
+            steps {
+                timeout(time: 10, unit: 'MINUTES') {
+                    sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
+                    sh './gradlew --stop'
+                    sh './gradlew clean forkDebugAndroidTest'
+                 }
+            }
+        }
     }
     post {
         always {
@@ -37,4 +43,4 @@ pipeline {
         }
     }
 }
-}
+
