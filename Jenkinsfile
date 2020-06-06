@@ -14,19 +14,15 @@ pipeline {
                     },
                     unit: {
                         sh './gradlew clean testDebugUnitTest'
+                    },
+                    espresso: {
+                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
+                        sh './gradlew --stop'
+                        sh './gradlew clean forkDebugAndroidTest'
                     }
                     )
                     }
             }
-        stage('Run UI tests') {
-            steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                    sh './gradlew --stop'
-                    sh './gradlew clean forkDebugAndroidTest'
-                 }
-            }
-        }
     }
     post {
         always {
