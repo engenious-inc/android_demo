@@ -38,6 +38,19 @@ pipeline {
                         sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR3}:5555'
                         sh './gradlew clean forkDebugAndroidTest'
                     }
+                    post {
+                        always {
+                            junit 'app/build/reports/fork/debugAndroidTest/tests/**/*.xml'
+                            publishHTML(target: [
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: false,
+                            keepAll: true,
+                            reportDir: 'app/build/reports/fork/debugAndroidTest/html',
+                            reportFiles: 'index.html',
+                            reportName: "HTML Report"
+                           ])
+                        }
+                    }
                 }
             }
         }
