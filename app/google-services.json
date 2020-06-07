@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "327997940141",
+    "firebase_url": "https://engenious-orderme.firebaseio.com",
+    "project_id": "engenious-orderme",
+    "storage_bucket": "engenious-orderme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327997940141:android:998786bbcbb67100f28124",
+        "android_client_info": {
+          "package_name": "com.github.tarcv.orderme.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327997940141-d5jt1v0fntvd7beqt68f0l5tm1usge7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtPz4HvDaUrwh51etzWlsmZh57jzPmGy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327997940141-d5jt1v0fntvd7beqt68f0l5tm1usge7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
