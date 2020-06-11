@@ -27,13 +27,18 @@ class OrderTest : BaseTest() {
     private val time = "02:04"
     private val bucketTotal = "77.0"
     private val reservationDate = "2020-06-27"
-    private val restaurantName = "Republique"
+    private val restaurantName = "Republique12"
 
     @Test
     fun completeOrderFlowForRepublique() {
         setupMockData()
         login {
             mockFBLogin()
+
+
+
+
+
         }
 
         restaurantList {
