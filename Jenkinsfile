@@ -33,9 +33,9 @@ pipeline {
                     }
                     steps {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
-                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555'
-                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR2}:5555'
-                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR3}:5555'
+                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR}:5555 &'
+                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR2}:5555 &'
+                        sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR3}:5555 &'
                         sh './gradlew clean forkDebugAndroidTest'
                     }
                     post {
