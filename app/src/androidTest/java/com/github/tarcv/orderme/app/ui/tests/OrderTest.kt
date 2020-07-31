@@ -79,42 +79,42 @@ class OrderTest : BaseTest() {
         }
     }
 
-////    @Test
-//    fun restaurantReservationFlow() {
-//        setupMockData()
-//        login {
-//            mockFBLogin()
-//        }
-//
-//        restaurantList {
-//            tapOnQrCodeButton()
-//        }
-//
-//        qrCode {
-//            typeInNewQrCode(republiqueQR)
-//            tapOnSubmitButton()
-//        }
-//
-//        restaurant {
-//            tapOnReservation()
-//        }
-//
-//        reservation {
-//            typeNumberOfPeople(numberOfPeople)
-//            typePhoneNumber(phoneNumber)
-//            selectDate(reservationDate)
-//            tapBookButton()
-//        }
-//
-//        popUp {
-//            checkReservationSuccessMessage()
-//            tapOkButton()
-//        }
-//
-//        reservations {
-//            tapOnReservations()
-//            tapFutureReservations()
-//            isReservationDisplayed(restaurantName, reservationDate, time)
-//        }
-//    }
+//    @Test
+    fun restaurantReservationFlow() {
+        setupMockData()
+        login {
+            mockFBLogin()
+        }
+
+        restaurantList {
+            tapOnQrCodeButton()
+        }
+
+        qrCode {
+            typeInNewQrCode(republiqueQR)
+            tapOnSubmitButton()
+        }
+
+        restaurant {
+            tapOnReservation()
+        }
+
+        reservation {
+            typeNumberOfPeople(numberOfPeople)
+            typePhoneNumber(phoneNumber)
+            selectDate(reservationDate)
+            tapBookButton()
+        }
+
+        popUp {
+            checkReservationSuccessMessage()
+            tapOkButton()
+        }
+
+        reservations {
+            tapOnReservations()
+            tapFutureReservations()
+            isReservationDisplayed(restaurantName, reservationDate, time)
+        }
+    }
 }
