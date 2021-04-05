@@ -13,7 +13,7 @@ pipeline {
                 sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR2}:5555 &'
                 sh '$ANDROID_HOME/platform-tools/adb connect ${EMULATOR3}:5555 &'
                 sh 'cd sift && ./gradlew installDist'
-                sh "runner/build/install/sift/bin/sift orchestrator run --token zfaXctcWy.S~GSI8KR0cX_aA --test-plan 'smoke' --status 'enabled'"
+                sh "sift/runner/build/install/sift/bin/sift orchestrator run --token zfaXctcWy.S~GSI8KR0cX_aA --test-plan 'smoke' --status 'enabled'"
             }
             post {
                 always {
