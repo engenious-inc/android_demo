@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.github.tarcv.orderme.app.ui.tests.MenuCategoriesTest" tests="1" failures="0" errors="0" skipped="0" time="31.162" timestamp="2021-04-05T14:25:41" hostname="localhost">
+  <properties>
+    <property name="pool" value="devices" />
+    <property name="device" value="Android SDK built for x86 - 27" />
+    <property name="deviceId" value="emulator-5554" />
+    <property name="totalFailureCount" value="0" />
+  </properties>
+  <testcase name="verifyDefaultMenuItemsNumberTest" classname="com.github.tarcv.orderme.app.ui.tests.MenuCategoriesTest" time="25.091" />
+<system-out>com.github.tarcv.orderme.app.ui.tests.MenuCategoriesTest:
+.
+Time: 19.804
+
+OK (1 test)
+
+
+</system-out>
+<system-err></system-err>
+</testsuite>

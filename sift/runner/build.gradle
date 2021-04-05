@@ -1,0 +1,79 @@
+plugins {
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$kotlin_version"
+    id 'application'
+    id 'maven-publish'
+}
+apply plugin: "org.jetbrains.kotlin.jvm"
+
+group 'io.engenious.sift'
+version '0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    google()
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation("com.github.engeniousio.tongs:tongs-runner") {
+        version {
+            strictly("12b0ca312ebc2d277e6e2361f45e24349b8480fb")
+        }
+    }
+    implementation("com.github.engeniousio.tongs:tongs-common") {
+        version {
+            strictly("12b0ca312ebc2d277e6e2361f45e24349b8480fb")
+        }
+    }
+    implementation("com.github.engeniousio.tongs:tongs-plugin-api") {
+        version {
+            strictly("12b0ca312ebc2d277e6e2361f45e24349b8480fb")
+        }
+    }
+    implementation("com.github.engeniousio.tongs:tongs-plugin-android") {
+        version {
+            strictly("12b0ca312ebc2d277e6e2361f45e24349b8480fb")
+        }
+    }
+    implementation("com.android.tools.ddms:ddmlib:22.0") // greater version from the above plugin is actually used
+    implementation "com.github.ajalt.clikt:clikt:3.0.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1"
+    implementation "org.http4k:http4k-client-okhttp:${http4kVersion}"
+    implementation "org.http4k:http4k-core:${http4kVersion}"
+    implementation "org.http4k:http4k-format-kotlinx-serialization:${http4kVersion}"
+    implementation "org.http4k:http4k-jsonrpc:${http4kVersion}"
+    implementation "org.http4k:http4k-multipart:${http4kVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0" // TODO: same version as OkHttpClient
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+    implementation 'org.slf4j:slf4j-log4j12:1.7.21'
+    implementation 'junit:junit:4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xopt-in=kotlin.RequiresOptIn", "-Xinline-classes"]
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xopt-in=kotlin.RequiresOptIn"]
+}
+
+application {
+    applicationName = 'sift'
+    mainClassName = "io.engenious.sift.MainCliKt"
+}
+run {
+    workingDir = project.getProperties().getOrDefault("workingDir", project.projectDir)
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId = rootProject.group
+        }
+    }
+}
