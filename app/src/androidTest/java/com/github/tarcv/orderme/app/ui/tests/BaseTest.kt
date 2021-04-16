@@ -11,10 +11,13 @@ import com.github.tarcv.orderme.app.ui.robots.restaurantList
 import com.schibsted.spain.barista.rule.cleardata.ClearDatabaseRule
 import com.schibsted.spain.barista.rule.cleardata.ClearFilesRule
 import com.schibsted.spain.barista.rule.cleardata.ClearPreferencesRule
+import io.engenious.sift.ScreenshotOnFailureRule
 import io.fabric8.mockwebserver.DefaultMockServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
+import org.junit.rules.RuleChain
+import org.junit.rules.TestRule
 import readJSONFromAsset
 import javax.inject.Inject
 
@@ -33,12 +36,17 @@ open class BaseTest {
     @Inject
     lateinit var mockWebServer: DefaultMockServer
 
+    private val clearPreferencesRule = ClearPreferencesRule()
+    private val clearDatabaseRule = ClearDatabaseRule()
+    private val clearFilesRule = ClearFilesRule()
+    private val screenshotRule = ScreenshotOnFailureRule()
+
     @get:Rule
-    var clearPreferencesRule = ClearPreferencesRule()
-    @get:Rule
-    var clearDatabaseRule = ClearDatabaseRule()
-    @get:Rule
-    var clearFilesRule = ClearFilesRule()
+    val rules: TestRule = RuleChain.emptyRuleChain()
+            .around(clearDatabaseRule)
+            .around(clearFilesRule)
+            .around(clearPreferencesRule)
+            .around(screenshotRule)
 
     val republiqueQR = "3_5"
     val inValidQR = "123"
