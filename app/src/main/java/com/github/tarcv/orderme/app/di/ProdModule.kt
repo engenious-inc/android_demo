@@ -7,5 +7,5 @@ import dagger.Provides
 class ProdModule {
     @Provides
     @BaseUrl
-    fun provideBaseUrl(): String = "http://46.101.208.201:8282"
+    fun provideBaseUrl(): String = "http://18.118.12.123:3000/"
 }

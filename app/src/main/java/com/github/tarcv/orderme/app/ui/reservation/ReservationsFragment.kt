@@ -16,6 +16,7 @@ import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.UpdatableListAdapter
 import com.github.tarcv.orderme.app.UpdatableListHolder
 import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.databinding.ReservationBinding
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.wireToAdapter
 import com.github.tarcv.orderme.core.data.entity.Reserve
@@ -23,7 +24,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import kotlinx.android.synthetic.main.reservation.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
@@ -34,6 +34,7 @@ class ReservationsFragment : LifecycleLogFragment(), ReservationView {
 
     @Inject
     lateinit var presenter: ReservationsPresenter
+    private lateinit var binding: ReservationBinding
 
     private val futureReservationsAdapter: ReservationAdapter by lazy {
         ReservationAdapter(placesRepository)
@@ -51,7 +52,8 @@ class ReservationsFragment : LifecycleLogFragment(), ReservationView {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         App.component.inject(this)
-        return inflater.inflate(R.layout.reservation, container, false)
+        binding = ReservationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onStart() {
@@ -87,17 +89,17 @@ class ReservationsFragment : LifecycleLogFragment(), ReservationView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        reservation_recycler.adapter = historyReservationsAdapter
+        binding.reservationRecycler.adapter = historyReservationsAdapter
         setupTabs()
     }
 
     private fun setupTabs() {
-        tab_layout.addTab(tab_layout.newTab().setText(R.string.history_reservations), true)
-        tab_layout.addTab(tab_layout.newTab().setText(R.string.future_reservations))
-        tab_layout.setTabMarginsAndBack(0)
-        tab_layout.setTabMarginsAndBack(1)
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.history_reservations), true)
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.future_reservations))
+        binding.tabLayout.setTabMarginsAndBack(0)
+        binding.tabLayout.setTabMarginsAndBack(1)
 
-        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 updateRecyclerForTab()
             }
@@ -110,12 +112,12 @@ class ReservationsFragment : LifecycleLogFragment(), ReservationView {
 
     @Synchronized
     private fun updateRecyclerForTab() {
-        reservation_recycler.adapter = if (tab_layout.selectedTabPosition == 0) {
+        binding.reservationRecycler.adapter = if (binding.tabLayout.selectedTabPosition == 0) {
             historyReservationsAdapter
         } else {
             futureReservationsAdapter
         }
-        reservation_recycler.layoutManager = LinearLayoutManager(context)
+        binding.reservationRecycler.layoutManager = LinearLayoutManager(context)
     }
 }
 

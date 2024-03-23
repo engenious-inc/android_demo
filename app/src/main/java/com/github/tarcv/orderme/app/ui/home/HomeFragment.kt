@@ -17,6 +17,7 @@ import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.UpdatableListAdapter
 import com.github.tarcv.orderme.app.UpdatableListHolder
 import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.databinding.FragmentHomeBinding
 import com.github.tarcv.orderme.app.wireToAdapter
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.REQUEST_CODE_QR_SCAN
@@ -28,13 +29,13 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
-import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 @MainThread
 class HomeFragment : LifecycleLogFragment(), HomeView {
     @Inject
     lateinit var presenter: HomePresenter
+    private lateinit var binding: FragmentHomeBinding
 
     val myCountingIdlingResource = CountingIdlingResource("myCountingIdlingResource")
 
@@ -48,7 +49,7 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     override fun onStart() {
         super.onStart()
 
-        val searchTextChanges = searchView.queryTextChanges()
+        val searchTextChanges = binding.searchView.queryTextChanges()
         presenter.bind(this, searchTextChanges)
     }
 
@@ -75,25 +76,26 @@ class HomeFragment : LifecycleLogFragment(), HomeView {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         App.component.injectHomeFragment(this)
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        restaurantRecycler.requestFocus()
+        binding.restaurantRecycler.requestFocus()
         placesListAdapter.restaurantClickListener = parentFragment as OnRestaurantClickListener
-        searchBtn.setOnClickListener({
+        binding.searchBtn.setOnClickListener({
             this@HomeFragment.startQrCodeActivity()
         })
 
-        restaurantRecycler.itemAnimator = DefaultItemAnimator()
-        restaurantRecycler.adapter = placesListAdapter
-        restaurantRecycler.layoutManager = LinearLayoutManager(activity)
+        binding.restaurantRecycler.itemAnimator = DefaultItemAnimator()
+        binding.restaurantRecycler.adapter = placesListAdapter
+        binding.restaurantRecycler.layoutManager = LinearLayoutManager(activity)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_QR_SCAN) {
-            saveOrErrorQrCode(context!!, presenter, resultCode, data)?.let { (place, _) ->
+            saveOrErrorQrCode(requireContext(), presenter, resultCode, data)?.let { (place, _) ->
                 (parentFragment as OnRestaurantClickListener).onRestaurantClicked(place!!)
             }
         }

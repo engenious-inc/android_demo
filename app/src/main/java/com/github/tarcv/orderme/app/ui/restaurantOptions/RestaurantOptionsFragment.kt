@@ -14,13 +14,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.FragmentRestaurantOptionsBinding
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.REQUEST_CODE_QR_SCAN
 import com.github.tarcv.orderme.app.ui.saveOrErrorQrCodeForTable
 import com.github.tarcv.orderme.app.ui.startQrCodeActivity
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.fragment_restaurant_options.*
 import timber.log.Timber
 
 class RestaurantOptionsFragment : LifecycleLogFragment() {
@@ -51,6 +51,7 @@ class RestaurantOptionsFragment : LifecycleLogFragment() {
     private lateinit var arrowListener: onArrowButtonClickListener
     private lateinit var options: List<Option>
     private lateinit var parentView: View
+    private lateinit var binding: FragmentRestaurantOptionsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,8 +60,8 @@ class RestaurantOptionsFragment : LifecycleLogFragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         initList()
-        val parentView = inflater.inflate(R.layout.fragment_restaurant_options, container, false)
-        return parentView
+        binding = FragmentRestaurantOptionsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     private fun initList() {
@@ -98,26 +99,26 @@ class RestaurantOptionsFragment : LifecycleLogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         buttonClickListener = parentFragment as OnButtonClickListener
         arrowListener = parentFragment as onArrowButtonClickListener
-        restaurant_options_recycler.layoutManager =
+        binding.restaurantOptionsRecycler.layoutManager =
             object : GridLayoutManager(context, numberOfColumns) {
                 override fun canScrollVertically() = false
             }
         val detectTable = {
             this@RestaurantOptionsFragment.startQrCodeActivity()
         }
-        restaurant_options_recycler.adapter =
+        binding.restaurantOptionsRecycler.adapter =
             RestaurantOptionsAdapter(options, buttonClickListener, detectTable, place)
 
-        restaurant_name.text = place.name
-        (restaurant_image_view as ImageView).setImageURI(Uri.parse(place.imagePath))
-        back_button.setOnClickListener {
+        binding.restaurantName.text = place.name
+        (binding.restaurantImageView as ImageView).setImageURI(Uri.parse(place.imagePath))
+        binding.backButton.setOnClickListener {
             arrowListener.onArrowClicked()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_QR_SCAN) {
-            saveOrErrorQrCodeForTable(context!!, place, resultCode, data)
+            saveOrErrorQrCodeForTable(requireContext(), place, resultCode, data)
         }
     }
 }

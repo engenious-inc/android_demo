@@ -7,18 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.MakeReservationBinding
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.FragmentStackCloser
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.SplashActivity
 import com.github.tarcv.orderme.app.ui.restaurantOptions.RestaurantOptionsFragment
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.make_reservation.*
 import java.util.Calendar
 
 class MakeReservationFragment : MakeReservationView, LifecycleLogFragment() {
 
     private lateinit var presenter: MakeReservationPresenter
+    private lateinit var binding: MakeReservationBinding
 
     lateinit var place: Place
     private lateinit var arrowListener: onArrowButtonClickListener
@@ -37,9 +38,10 @@ class MakeReservationFragment : MakeReservationView, LifecycleLogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.make_reservation, container, false)
+        binding = MakeReservationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,13 +49,13 @@ class MakeReservationFragment : MakeReservationView, LifecycleLogFragment() {
         presenter = MakeReservationPresenter(place)
         arrowListener = parentFragment as onArrowButtonClickListener
 
-        make_reservation_image_view.setImageURI(place.imagePath)
+        binding.makeReservationImageView.setImageURI(place.imagePath)
 
-        make_reservation_time_picker.setOnTimeChangedListener { _, hourOfDay, minute ->
+        binding.makeReservationTimePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
             presenter.timeChanged(hourOfDay, minute)
         }
 
-        make_reservation_date_picker
+        binding.makeReservationDatePicker
                 .init(
                         Calendar.getInstance().get(Calendar.YEAR),
                         Calendar.getInstance().get(Calendar.MONTH),
@@ -62,11 +64,11 @@ class MakeReservationFragment : MakeReservationView, LifecycleLogFragment() {
                     presenter.dateChanged(year, month, dayOfMonth)
                 }
 
-        make_reservation_book_button.setOnClickListener {
+        binding.makeReservationBookButton.setOnClickListener {
             bookButtonClicked()
         }
 
-        back_button.setOnClickListener {
+        binding.backButton.setOnClickListener {
             arrowListener.onArrowClicked()
         }
     }
@@ -109,11 +111,11 @@ class MakeReservationFragment : MakeReservationView, LifecycleLogFragment() {
     }
 
     override fun getPhoneNumber(): String {
-        return make_reservation_phone.text.toString()
+        return binding.makeReservationPhone.text.toString()
     }
 
     override fun getPeopleCount(): Int {
-        return Integer.parseInt(make_reservation_people.text.toString())
+        return Integer.parseInt(binding.makeReservationPeople.text.toString())
     }
 
     override fun notifyNotLoggedIn() {

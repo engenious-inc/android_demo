@@ -13,17 +13,12 @@ import android.widget.TextView
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.Bucket
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.MenuBinding
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.core.data.entity.Category
 import com.github.tarcv.orderme.core.data.entity.Dish
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.menu.back_button
-import kotlinx.android.synthetic.main.menu.bucket_button
-import kotlinx.android.synthetic.main.menu.bucket_textview
-import kotlinx.android.synthetic.main.menu.category_name
-import kotlinx.android.synthetic.main.menu.menu_image_view
-import kotlinx.android.synthetic.main.menu.menu_recycler
 import java.lang.Math.max
 import javax.inject.Inject
 
@@ -52,9 +47,9 @@ class RestaurantMenuFragment : LifecycleLogFragment(), RestaurantMenuView {
     lateinit var bucket: Bucket
 
     private val place: Place
-        get() = arguments!!.getSerializable(KEY_PLACE) as Place
+        get() = requireArguments().getSerializable(KEY_PLACE) as Place
     private val category: Category
-        get() = arguments!!.getSerializable(KEY_CATEGORY) as Category
+        get() = requireArguments().getSerializable(KEY_CATEGORY) as Category
 
     lateinit var countClickListener: OnCountButtonClickListener
     lateinit var infoCLickListener: OnInfoButtonCLickListener
@@ -64,9 +59,11 @@ class RestaurantMenuFragment : LifecycleLogFragment(), RestaurantMenuView {
 
     private lateinit var dishes: List<Dish>
 
+    private lateinit var binding: MenuBinding
+
     override fun setDishes(dishes: List<Dish>) {
         this.dishes = dishes
-        menu_recycler.adapter =
+        binding.menuRecycler.adapter =
             RestaurantOptionsAdapter(dishes, infoCLickListener, countClickListener, bucket)
     }
 
@@ -88,24 +85,25 @@ class RestaurantMenuFragment : LifecycleLogFragment(), RestaurantMenuView {
         super.onCreateView(inflater, container, savedInstanceState)
         App.component.inject(this)
         presenter = RestaurantMenuPresenter(category)
-        return inflater.inflate(R.layout.menu, container, false)
+        binding = MenuBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        (menu_image_view as ImageView).setImageURI(Uri.parse(place.imagePath))
-        category_name.text = category.name
+        (binding.menuImageView as ImageView).setImageURI(Uri.parse(place.imagePath))
+        binding.categoryName.text = category.name
 
         arrowListener = parentFragment as onArrowButtonClickListener
         infoCLickListener = parentFragment as OnInfoButtonCLickListener
         bucketClickListener = parentFragment as OnPlaceBucketCLickListener
         countClickListener = presenter
-        bucket_button.setOnClickListener(View.OnClickListener {
+        binding.bucketButton.setOnClickListener(View.OnClickListener {
             bucketClickListener.onBucketClicked(place, category)
         })
-        back_button.setOnClickListener(View.OnClickListener {
+        binding.backButton.setOnClickListener(View.OnClickListener {
             arrowListener.onArrowClicked()
         })
-        menu_recycler.layoutManager = LinearLayoutManager(context)
+        binding.menuRecycler.layoutManager = LinearLayoutManager(context)
         refreshSum()
     }
 
@@ -114,7 +112,7 @@ class RestaurantMenuFragment : LifecycleLogFragment(), RestaurantMenuView {
         for ((dish, count) in bucket.dishes) {
             sum += dish.price * count
         }
-        bucket_textview.text = sum.toString()
+        binding.bucketTextview.text = sum.toString()
     }
 
     companion object {
