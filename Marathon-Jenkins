@@ -9,8 +9,6 @@ pipeline {
                  }
              }
             steps {
-                sh 'java -version'
-                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean ktlint'
             }
         }
@@ -18,7 +16,6 @@ pipeline {
             agent {
                 docker {
                     image 'mingc/android-build-box:1.28.0'
-                    args '-u root:root'
                 }
             }
             steps {
@@ -29,7 +26,6 @@ pipeline {
             agent {
                 docker {
                     image 'mingc/android-build-box:1.28.0'
-                    args '-u root:root'
                 }
             }
             steps {
