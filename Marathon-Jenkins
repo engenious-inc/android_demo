@@ -6,7 +6,7 @@ pipeline {
                 stage('Run ktlint') {
                     agent {
                         docker {
-                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
+                            image 'javiersantos/android-ci:28.0.3'
                          }
                      }
                     steps {
@@ -17,7 +17,7 @@ pipeline {
                 stage('Run unit tests') {
                     agent {
                         docker {
-                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
+                            image 'javiersantos/android-ci:28.0.3'
                         }
                     }
                     steps {
@@ -28,12 +28,14 @@ pipeline {
                 stage('Run UI Espresso tests') {
                     agent {
                         docker {
-                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
+                            image 'javiersantos/android-ci:28.0.3'
                         }
                     }
                     steps {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                         sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
+                        sh 'brew help'
+                        sh 'brew tap malinskiy/tap'
                         sh 'marathon-cloud run android --application app/build/output/apk/debug/app.apk --test-application app/build/output/apk/androidTest/debug/appTest.apk'
                     }
                 }
