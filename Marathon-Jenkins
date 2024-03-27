@@ -34,6 +34,7 @@ pipeline {
                     steps {
                         sh './docker pull marathonlabs/marathon-cloud:latest'
                         sh 'alias marathon-cloud=\'docker run -v \"$(pwd)\":/work -it --rm marathonlabs/marathon-cloud:latest\''
+                        sh 'marathon-cloud help'
                     }
                 }
             }
