@@ -6,7 +6,7 @@ pipeline {
                 stage('Run ktlint') {
                     agent {
                         docker {
-                            image 'javiersantos/android-ci:28.0.3'
+                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
                          }
                      }
                     steps {
@@ -17,7 +17,7 @@ pipeline {
                 stage('Run unit tests') {
                     agent {
                         docker {
-                            image 'javiersantos/android-ci:28.0.3'
+                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
                         }
                     }
                     steps {
