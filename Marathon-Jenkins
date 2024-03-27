@@ -1,40 +1,47 @@
 pipeline {
     agent none
     stages {
-        stage('Run Test') {
-            parallel {
-                stage('Run ktlint') {
-                    agent {
-                        docker {
-                            image 'javiersantos/android-ci:28.0.3'
-                         }
-                     }
-                    steps {
-                        sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
-                        sh './gradlew clean ktlint'
-                    }
+        stage('Run ktlint') {
+            agent {
+                docker {
+                    image 'javiersantos/android-ci:28.0.3'
+                 }
+             }
+            steps {
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh './gradlew clean ktlint'
+            }
+        }
+        stage('Run unit tests') {
+            agent {
+                docker {
+                    image 'javiersantos/android-ci:28.0.3'
                 }
-                stage('Run unit tests') {
-                    agent {
-                        docker {
-                            image 'javiersantos/android-ci:28.0.3'
-                        }
-                    }
-                    steps {
-                        sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
-                        sh './gradlew clean testDebugUnitTest'
-                    }
+            }
+            steps {
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh './gradlew clean testDebugUnitTest'
+            }
+        }
+        stage('Build apks') {
+            agent {
+                docker {
+                    image 'javiersantos/android-ci:28.0.3'
                 }
-                stage('Run UI Espresso tests') {
-                    agent any
-                    steps {
-                        sh '''
-                            docker pull marathonlabs/marathon-cloud:latest
-                            alias marathon-cloud='docker run -v "$(pwd)":/work --rm marathonlabs/marathon-cloud:latest'
-                            marathon-cloud help
-                        '''
-                    }
-                }
+            }
+            steps {
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
+            }
+        }
+        stage('Run UI Espresso tests') {
+            agent any
+            steps {
+                sh '''
+                    docker pull marathonlabs/marathon-cloud:latest
+                    alias marathon-cloud='docker run -v "$(pwd)":/work --rm marathonlabs/marathon-cloud:latest'
+                    marathon-cloud help
+                '''
             }
         }
     }
