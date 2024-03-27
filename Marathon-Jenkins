@@ -28,12 +28,12 @@ pipeline {
                 stage('Run UI Espresso tests') {
                     agent {
                         docker {
-                            image 'marathonlabs/marathon-cloud:1.0.6'
+                            image 'javiersantos/android-ci:28.0.3'
                         }
                     }
                     steps {
-                        sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
-                        sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
+                        sh './docker pull marathonlabs/marathon-cloud:latest'
+                        sh 'alias marathon-cloud=\'docker run -v \"$(pwd)\":/work -it --rm marathonlabs/marathon-cloud:latest\''
                     }
                 }
             }
