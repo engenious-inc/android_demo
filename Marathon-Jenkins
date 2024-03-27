@@ -9,7 +9,7 @@ pipeline {
                  }
              }
             steps {
-                sh 'sudo yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean ktlint'
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew clean testDebugUnitTest'
             }
         }
@@ -33,7 +33,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
+                sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
                 stash includes: 'app/build/outputs/apk/debug/app-debug.apk', name: 'app'
                 stash includes: 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk', name: 'appTest'
