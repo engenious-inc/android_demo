@@ -28,7 +28,7 @@ pipeline {
                 stage('Run UI Espresso tests') {
                     agent {
                         docker {
-                            image 'javiersantos/android-ci:28.0.3'
+                            image 'marathonlabs/marathon-cloud'
                         }
                     }
                     steps {
