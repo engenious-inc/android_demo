@@ -32,15 +32,19 @@ pipeline {
             steps {
                 sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                 sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
+                stash includes: 'app/build/outputs/apk/debug/app-debug.apk', name: 'app'
+                stash includes: 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk', name: 'appTest'
             }
         }
         stage('Run UI Espresso tests') {
             agent any
             steps {
+                unstash 'app'
+                unstash 'appTest'
                 sh '''
                     docker pull marathonlabs/marathon-cloud:latest
                     alias marathon-cloud='docker run -v "$(pwd)":/work --rm marathonlabs/marathon-cloud:latest'
-                    marathon-cloud help
+                    marathon-cloud run android --application app.apk --test-application appTest.apk
                 '''
             }
         }
