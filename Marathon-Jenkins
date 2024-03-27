@@ -28,7 +28,7 @@ pipeline {
                 stage('Run UI Espresso tests') {
                     agent {
                         docker {
-                            image 'marathonlabs/marathon-cloud:1.0.6'
+                            image 'MarathonLabs/marathon-cloud-cli:1.0.6'
                         }
                     }
                     steps {
