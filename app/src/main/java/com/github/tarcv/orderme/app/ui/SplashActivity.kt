@@ -46,7 +46,9 @@ class SplashActivity : BaseActivity() {
             startActivity()
         }
 
-        binding.contentMain.loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+        binding.contentMain.loginButton.registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.i("LoginResult: onSuccess token = ${loginResult.accessToken.token}")
                 loginOnServer(loginResult.accessToken.token)

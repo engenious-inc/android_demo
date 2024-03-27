@@ -18,7 +18,6 @@ import timber.log.Timber
 class TabBarActivity : BaseFragmentActivity() {
     private lateinit var mTabCollectionPagerAdapter: TabCollectionPagerAdapter
 
-
     private lateinit var binding: ActivityTabBarBinding
     lateinit var reservationFragment: ReservationsFragment
         private set
@@ -59,7 +58,6 @@ class TabBarActivity : BaseFragmentActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTabBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         reservationFragment = ReservationsFragment()
         centerFragmentHolder = CenterFragmentHolder()

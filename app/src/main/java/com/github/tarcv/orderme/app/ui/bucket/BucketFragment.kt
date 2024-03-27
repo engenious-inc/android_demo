@@ -80,7 +80,8 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
         fillList()
         refreshTotal()
         binding.bucketRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.bucketRecyclerView.adapter = RestaurantOptionsAdapter(dishes, countClickListener, bucket)
+        binding.bucketRecyclerView.adapter =
+            RestaurantOptionsAdapter(dishes, countClickListener, bucket)
 
         binding.bucketDeleteAll.setOnClickListener {
             presenter.deleteAll()

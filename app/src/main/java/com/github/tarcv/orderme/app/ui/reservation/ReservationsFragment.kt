@@ -94,7 +94,8 @@ class ReservationsFragment : LifecycleLogFragment(), ReservationView {
     }
 
     private fun setupTabs() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.history_reservations), true)
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(R.string.history_reservations), true)
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.future_reservations))
         binding.tabLayout.setTabMarginsAndBack(0)
         binding.tabLayout.setTabMarginsAndBack(1)

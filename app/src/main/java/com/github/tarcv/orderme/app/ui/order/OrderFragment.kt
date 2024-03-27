@@ -69,7 +69,11 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
             val fragment = this@OrderFragment
 
             if (App.sharedPreferences.getString(App.LOGIN_TOKEN, "") == "") {
-                Snackbar.make(fragment.requireView(), R.string.not_logged, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    fragment.requireView(),
+                    R.string.not_logged,
+                    Snackbar.LENGTH_LONG
+                ).show()
             } else {
 
                 val builder = AlertDialog.Builder(fragment.getFragmentContext())
