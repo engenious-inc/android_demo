@@ -50,9 +50,9 @@ pipeline {
             }
             steps {
                 sh 'ls -l'
-                unstash 'appDebug'
+                unstash name: 'appDebug'
                 sh 'ls -l'
-                unstash 'appTest'
+                unstash name: 'appTest'
                 sh 'ls -l'
                 sh '''
                     docker pull marathonlabs/marathon-cloud:latest
