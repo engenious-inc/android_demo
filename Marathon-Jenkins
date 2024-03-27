@@ -34,14 +34,18 @@ pipeline {
                 sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
                 sh 'pwd'
                 sh 'ls -l app/build/outputs/apk/debug/app-debug.apk'
+                sh 'chmod 777 app/build/outputs/apk/debug/app-debug.apk'
                 stash includes: 'app/build/outputs/apk/debug/app-debug.apk', name: 'app'
+                sh 'chmod 777 app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'
                 stash includes: 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk', name: 'appTest'
             }
         }
         stage('Run UI Espresso tests') {
             agent any
             steps {
+                sh 'ls -l'
                 unstash 'app'
+                sh 'ls -l'
                 unstash 'appTest'
                 sh 'ls -l'
                 sh '''
