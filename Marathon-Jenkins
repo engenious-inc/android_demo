@@ -34,9 +34,6 @@ pipeline {
                     steps {
                         sh 'yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses && $ANDROID_HOME/tools/bin/sdkmanager --update'
                         sh './gradlew :app:assembleDebug :app:assembleDebugAndroidTest'
-                        sh 'brew help'
-                        sh 'brew tap malinskiy/tap'
-                        sh 'marathon-cloud run android --application app/build/output/apk/debug/app.apk --test-application app/build/output/apk/androidTest/debug/appTest.apk'
                     }
                 }
             }
