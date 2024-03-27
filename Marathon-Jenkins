@@ -4,7 +4,7 @@ pipeline {
         stage('Run ktlint') {
             agent {
                 docker {
-                    image 'javiersantos/android-ci:28.0.3'
+                    image 'mingc/android-build-box:1.28.0'
                     args '-u root:root'
                  }
              }
@@ -17,7 +17,7 @@ pipeline {
         stage('Run unit tests') {
             agent {
                 docker {
-                    image 'javiersantos/android-ci:28.0.3'
+                    image 'mingc/android-build-box:1.28.0'
                     args '-u root:root'
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
         stage('Build apks') {
             agent {
                 docker {
-                    image 'javiersantos/android-ci:28.0.3'
+                    image 'mingc/android-build-box:1.28.0'
                     args '-u root:root'
                 }
             }
