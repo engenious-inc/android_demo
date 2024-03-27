@@ -32,9 +32,11 @@ pipeline {
                         }
                     }
                     steps {
-                        sh 'docker pull marathonlabs/marathon-cloud:latest'
-                        sh 'alias marathon-cloud=\'docker run -v \"$(pwd)\":/work -it --rm marathonlabs/marathon-cloud:latest\''
-                        sh 'marathon-cloud help'
+                        sh '''
+                            docker pull marathonlabs/marathon-cloud:latest
+                            alias marathon-cloud='docker run -v "$(pwd)":/work --rm marathonlabs/marathon-cloud:latest'
+                            marathon-cloud help
+                        '''
                     }
                 }
             }
