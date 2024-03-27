@@ -42,12 +42,7 @@ pipeline {
             }
         }
         stage('Run UI Espresso tests') {
-            agent {
-                docker {
-                    image 'mingc/android-build-box:1.28.0'
-                    args '-u root:root'
-                }
-            }
+            agent any
             steps {
                 sh 'ls -l'
                 sh '''
