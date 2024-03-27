@@ -35,7 +35,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -l app'
                 sh 'ls -l app/build'
-                sh 'ls -l outputs'
+                sh 'ls -l app/build/outputs'
                 sh 'chmod -R 777 app'
                 stash includes: 'app/build/outputs/apk/debug/app-debug.apk', name: 'appDebug'
                 stash includes: 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk', name: 'appTest'
