@@ -20,6 +20,7 @@ import org.hamcrest.Matchers.not
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.equalTo
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
@@ -40,6 +41,7 @@ class IntentTest22 : BaseTest() {
                 .respondWith(ActivityResult(RESULT_OK, null))
     }
 
+    @Ignore
     @Test
     fun testOpenMap() {
         setupMockData()

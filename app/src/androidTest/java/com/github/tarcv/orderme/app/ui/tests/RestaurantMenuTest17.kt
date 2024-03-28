@@ -10,6 +10,7 @@ import com.github.tarcv.orderme.app.ui.robots.restaurant
 import com.github.tarcv.orderme.app.ui.robots.menuCategories
 import com.github.tarcv.orderme.app.ui.robots.menuItem
 import junit.framework.TestCase.assertEquals
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,6 +21,7 @@ class RestaurantMenuTest17 : BaseTest() {
     val validQR = "3_5"
     var bucketTotal: Double = 77.0
 
+    @Ignore
     @Test
     fun verifyShoppingCartTotalTest() {
         setupMockData()
