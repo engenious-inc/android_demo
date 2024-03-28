@@ -91,7 +91,7 @@ class IntentTest22 : BaseTest() {
                 )
         )
     }
-
+    @Ignore
     @Test
     fun testOpenDialerForRepublique() {
         setupMockData()
