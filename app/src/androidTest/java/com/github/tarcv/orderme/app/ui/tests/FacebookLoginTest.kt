@@ -13,7 +13,6 @@ class FacebookLoginTest : BaseTest() {
     @Test
     fun testFacebookLogin() {
         login {
-
             mockFBLogin()
             tapDeviceBackButton()
             checkContinueButtonPresent()
