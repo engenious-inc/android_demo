@@ -31,8 +31,6 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FacebookSdk.setClientToken("371530346532127")
-        FacebookSdk.sdkInitialize(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
