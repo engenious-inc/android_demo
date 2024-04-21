@@ -45,6 +45,7 @@ pipeline {
                 MARATHON_API_KEY = credentials('marathon-api-key')
             }
             steps {
+
                 sh '''
                     docker pull marathonlabs/marathon-cloud:latest
                     alias marathon-cloud='docker run -v "$(pwd)":/work --rm marathonlabs/marathon-cloud:latest'
