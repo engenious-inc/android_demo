@@ -1,7 +1,4 @@
 pipeline {
-    triggers {
-        githubPush()
-    }
     agent none
     stages {
         stage('Run ktlint') {
