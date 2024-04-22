@@ -78,7 +78,7 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
 
                 val builder = AlertDialog.Builder(fragment.getFragmentContext())
                 builder.setTitle(R.string.logout)
-                        .setPositiveButton(R.string.ok, { _, i ->
+                        .setPositiveButton(R.string.ok) { _, _ ->
                             LoginManager.getInstance().logOut()
                             App.sharedPreferences.edit().apply {
                                 putString(App.LOGIN_TOKEN, "")
@@ -87,11 +87,11 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
                                 putString(App.LOGIN_USER_ID, "")
                             }.commit()
                             fragment.requireActivity().finishAfterTransition()
-                        })
-                        .setNegativeButton(R.string.cancel, { dialogInterface, _ ->
-                            dialogInterface.cancel()
-                        })
-                        .create()
+                        }
+                    .setNegativeButton(R.string.cancel) { dialogInterface, _ ->
+                        dialogInterface.cancel()
+                    }
+                    .create()
                         .show()
             }
         }
