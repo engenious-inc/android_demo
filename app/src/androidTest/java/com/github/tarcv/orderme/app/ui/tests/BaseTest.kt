@@ -23,7 +23,6 @@ open class BaseTest {
     fun setup() {
         IdlingRegistry.getInstance().register(Utils.countingIdlingResource)
         (App.component as AndroidTestAppComponent).injectBaseTest(this)
-        setupMockData()
     }
 
     @After
