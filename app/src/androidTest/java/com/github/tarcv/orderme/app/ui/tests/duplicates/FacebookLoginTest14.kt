@@ -7,7 +7,6 @@ import com.github.tarcv.orderme.app.ui.robots.login
 import org.junit.Rule
 import org.junit.Test
 
-
 class FacebookLoginTest14 : BaseTest() {
     @get:Rule
     val mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
