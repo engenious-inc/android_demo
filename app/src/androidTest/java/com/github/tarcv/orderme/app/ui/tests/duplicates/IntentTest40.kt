@@ -20,7 +20,6 @@ import org.hamcrest.Matchers.not
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.equalTo
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 
@@ -40,7 +39,7 @@ class IntentTest40 : BaseTest() {
         intending(not(isInternal()))
                 .respondWith(ActivityResult(RESULT_OK, null))
     }
-    @Ignore
+
     @Test
     fun testOpenMap() {
         setupMockData()
@@ -90,7 +89,7 @@ class IntentTest40 : BaseTest() {
                 )
         )
     }
-    @Ignore
+
     @Test
     fun testOpenDialerForRepublique() {
         setupMockData()

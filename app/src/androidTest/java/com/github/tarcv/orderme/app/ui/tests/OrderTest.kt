@@ -13,9 +13,7 @@ import com.github.tarcv.orderme.app.ui.robots.login
 import com.github.tarcv.orderme.app.ui.robots.reservation
 import com.github.tarcv.orderme.app.ui.robots.reservations
 import com.github.tarcv.orderme.app.ui.robots.popUp
-import org.junit.Ignore
 import org.junit.Rule
-import org.junit.Test
 
 class OrderTest : BaseTest() {
     @get:Rule
@@ -30,8 +28,6 @@ class OrderTest : BaseTest() {
     private val reservationDate = "2020-06-27"
     private val restaurantName = "Republique"
 
-    @Ignore
-    @Test
     fun completeOrderFlowForRepublique() {
         setupMockData()
         login {
@@ -81,7 +77,6 @@ class OrderTest : BaseTest() {
         }
     }
 
-//    @Test
     fun restaurantReservationFlow() {
         setupMockData()
         login {
