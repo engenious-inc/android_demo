@@ -19,17 +19,17 @@ class QRTest : BaseTest() {
     @Test
     fun checkRestaurantTitleTest() {
         setupMockData()
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         restaurant {
             checkTitleIsDispayed()
             assertEquals(republique, getRestaurantTitleText())
@@ -40,38 +40,38 @@ class QRTest : BaseTest() {
     fun bringMenuHappyPathTest() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             selectCallWaiter()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         callWaiterOption {
             selectBringMenuOption()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         popUp {
             checkQRCodeSuccessMessage()
         }
@@ -81,28 +81,28 @@ class QRTest : BaseTest() {
     fun qrCodeFromPlaceHappyPath() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             tapOnMenuOption()
             checkMenuIsDisplayed()
@@ -113,30 +113,30 @@ class QRTest : BaseTest() {
     fun invalidQrCodeFromSecondEntry() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             checkTitleIsDispayed()
             backButtonIsDispayed()
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             typeInNewQrCode(inValidQR)
             tapOnSubmitButton()
@@ -148,27 +148,27 @@ class QRTest : BaseTest() {
     fun verifyScanErrorForDetectTableOption() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurantList {
             selectRestaurant(oceanSeafood)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             simulateError()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         popUp {
             checkQRCodeErrorMessage()
         }

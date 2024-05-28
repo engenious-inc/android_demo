@@ -26,12 +26,12 @@ class RestaurantListTest : BaseTest() {
     fun verifySearchTest() {
         setupMockData()
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         restaurantList {
             typeTextInSearchField(romanov)
             assertNotSame(hakkasan, getRestaurantTitleText())
@@ -43,12 +43,12 @@ class RestaurantListTest : BaseTest() {
     fun checkNumberOfRestaurants() {
         setupMockData()
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(1000L)
         restaurantList {
             checkNumberOfRestaurants(numberOfRestaurants)
         }
@@ -58,33 +58,33 @@ class RestaurantListTest : BaseTest() {
     fun checkDefaultCartValue() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         restaurant {
             selectMenuOption()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         menuCategories {
             selectFish()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(1000L)
         bucket {
             assertEquals(cartTotal, getBucketTotal())
         }
