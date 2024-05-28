@@ -30,27 +30,34 @@ class OrderTest : BaseTest() {
 
     fun completeOrderFlowForRepublique() {
         setupMockData()
+
+        Thread.sleep(1500L)
         login {
             mockFBLogin()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnMenuOption()
         }
 
+        Thread.sleep(1500L)
         menuCategories {
             tapSaladsAndVegetables()
         }
 
+        Thread.sleep(1500L)
         menuItem {
             tapOnPlusButton(colemanFarmsLittleGems)
             tapOnPlusButton(blackAndWhiteSalad)
@@ -58,20 +65,24 @@ class OrderTest : BaseTest() {
             tapOnShoppingCart()
         }
 
+        Thread.sleep(1500L)
         bucket {
             typeInComments(comment)
             tapOnAccept()
         }
 
+        Thread.sleep(1500L)
         popUp {
             checkOrderStatus()
             tapOkButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnOrders()
         }
 
+        Thread.sleep(1500L)
         orders {
             checkOrderIsDisplayed(restaurantName, orderDate, time, bucketTotal)
         }
@@ -79,23 +90,28 @@ class OrderTest : BaseTest() {
 
     fun restaurantReservationFlow() {
         setupMockData()
+        Thread.sleep(1500L)
         login {
             mockFBLogin()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnReservation()
         }
 
+        Thread.sleep(1500L)
         reservation {
             typeNumberOfPeople(numberOfPeople)
             typePhoneNumber(phoneNumber)
@@ -103,11 +119,13 @@ class OrderTest : BaseTest() {
             tapBookButton()
         }
 
+        Thread.sleep(1500L)
         popUp {
             checkReservationSuccessMessage()
             tapOkButton()
         }
 
+        Thread.sleep(1500L)
         reservations {
             tapOnReservations()
             tapFutureReservations()

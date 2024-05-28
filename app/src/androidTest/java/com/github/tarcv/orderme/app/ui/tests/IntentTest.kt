@@ -42,19 +42,24 @@ class IntentTest : BaseTest() {
     @Test
     fun testOpenMap() {
         setupMockData()
+
+        Thread.sleep(3000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(3000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(3000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(3000L)
         restaurant {
             tapOnMap()
         }
@@ -70,13 +75,18 @@ class IntentTest : BaseTest() {
     @Test
     fun testOpenDialerForRomanov() {
         setupMockData()
+
+        Thread.sleep(3000L)
         login {
             loginLater()
         }
+
+        Thread.sleep(3000L)
         restaurantList {
             selectRestaurant(romanov)
         }
 
+        Thread.sleep(3000L)
         restaurant {
             tapOnPhone()
         }
@@ -92,13 +102,16 @@ class IntentTest : BaseTest() {
     @Test
     fun testOpenDialerForRepublique() {
         setupMockData()
+        Thread.sleep(3000L)
         loginLaterAndOpenMockQR()
 
+        Thread.sleep(3000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(3000L)
         restaurant {
             tapOnPhone()
         }
@@ -114,14 +127,18 @@ class IntentTest : BaseTest() {
     @Test
     fun testOpenDialerForHakkasan() {
         setupMockData()
+
+        Thread.sleep(3000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(3000L)
         restaurantList {
             selectRestaurant(hakkasan)
         }
 
+        Thread.sleep(3000L)
         restaurant {
             tapOnPhone()
         }
@@ -137,14 +154,18 @@ class IntentTest : BaseTest() {
     @Test
     fun testOpenDialerForOceanSeafood() {
         setupMockData()
+
+        Thread.sleep(3000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(3000L)
         restaurantList {
             selectRestaurant(oceanSeafood)
         }
 
+        Thread.sleep(3000L)
         restaurant {
             tapOnPhone()
         }

@@ -20,18 +20,23 @@ class MenuCategoriesTest : BaseTest() {
     @Test
     fun verifyDefaultMenuItemsNumberTest() {
         setupMockData()
+
+        Thread.sleep(3000L)
         loginLaterAndOpenMockQR()
 
+        Thread.sleep(3000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(3000L)
         restaurant {
             selectMenuOption()
             checkMenuIsDisplayed()
         }
 
+        Thread.sleep(3000L)
         menuCategories {
             selectItemFromMenu(saladsAndVegetables)
         }

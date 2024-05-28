@@ -19,14 +19,17 @@ class QRTest : BaseTest() {
     @Test
     fun checkRestaurantTitleTest() {
         setupMockData()
+        Thread.sleep(3000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(3000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
+        Thread.sleep(3000L)
         restaurant {
             checkTitleIsDispayed()
             assertEquals(republique, getRestaurantTitleText())
@@ -36,31 +39,39 @@ class QRTest : BaseTest() {
     @Test
     fun bringMenuHappyPathTest() {
         setupMockData()
+
+        Thread.sleep(1500L)
         login {
             loginLater()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             selectRestaurant(republique)
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnDetectTable()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             selectCallWaiter()
         }
 
+        Thread.sleep(1500L)
         callWaiterOption {
             selectBringMenuOption()
         }
 
+        Thread.sleep(1500L)
         popUp {
             checkQRCodeSuccessMessage()
         }
@@ -69,23 +80,29 @@ class QRTest : BaseTest() {
     @Test
     fun qrCodeFromPlaceHappyPath() {
         setupMockData()
+
+        Thread.sleep(1500L)
         login {
             loginLater()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             selectRestaurant(republique)
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnDetectTable()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnMenuOption()
             checkMenuIsDisplayed()
@@ -95,25 +112,31 @@ class QRTest : BaseTest() {
     @Test
     fun invalidQrCodeFromSecondEntry() {
         setupMockData()
+
+        Thread.sleep(1500L)
         login {
             loginLater()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(1500L)
         restaurant {
             checkTitleIsDispayed()
             backButtonIsDispayed()
             tapOnDetectTable()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             typeInNewQrCode(inValidQR)
             tapOnSubmitButton()
@@ -124,22 +147,28 @@ class QRTest : BaseTest() {
     @Test
     fun verifyScanErrorForDetectTableOption() {
         setupMockData()
+
+        Thread.sleep(1500L)
         login {
             loginLater()
         }
 
+        Thread.sleep(1500L)
         restaurantList {
             selectRestaurant(oceanSeafood)
         }
 
+        Thread.sleep(1500L)
         restaurant {
             tapOnDetectTable()
         }
 
+        Thread.sleep(1500L)
         qrCode {
             simulateError()
         }
 
+        Thread.sleep(1500L)
         popUp {
             checkQRCodeErrorMessage()
         }
