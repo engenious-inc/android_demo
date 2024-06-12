@@ -12,13 +12,13 @@ class NewFeatureTest38 : BaseTest() {
     @get:Rule
     val mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testFacebookLogin() {
         login {
             mockFBLogin()
-            Thread.sleep(3000L)
+            Thread.sleep(5000L)
             tapDeviceBackButton()
-            Thread.sleep(3000L)
+            Thread.sleep(5000L)
             checkContinueButtonPresent()
         }
     }

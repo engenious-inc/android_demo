@@ -19,26 +19,26 @@ class MenuCategoriesTest54 : BaseTest() {
     private val saladsAndVegetables = "SALADS AND VEGETABLES"
     private val defaultCountOfItems: Int = 0
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun verifyDefaultMenuItemsNumberTest() {
         setupMockData()
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         loginLaterAndOpenMockQR()
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         restaurant {
             selectMenuOption()
             checkMenuIsDisplayed()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         menuCategories {
             selectItemFromMenu(saladsAndVegetables)
         }

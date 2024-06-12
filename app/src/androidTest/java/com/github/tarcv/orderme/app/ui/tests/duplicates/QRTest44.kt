@@ -18,127 +18,127 @@ class QRTest44 : BaseTest() {
     @get:Rule
     val mActivityTestRule = ActivityTestRule(SplashActivity::class.java)
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun checkRestaurantTitleTest() {
         setupMockData()
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(3000L)
+        Thread.sleep(5000L)
         restaurant {
             checkTitleIsDispayed()
             assertEquals(republique, getRestaurantTitleText())
         }
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun bringMenuHappyPathTest() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             selectCallWaiter()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         callWaiterOption {
             selectBringMenuOption()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         popUp {
             checkQRCodeSuccessMessage()
         }
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun qrCodeFromPlaceHappyPath() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(republique)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnMenuOption()
             checkMenuIsDisplayed()
         }
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun invalidQrCodeFromSecondEntry() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             checkTitleIsDispayed()
             backButtonIsDispayed()
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(inValidQR)
             tapOnSubmitButton()
@@ -146,31 +146,31 @@ class QRTest44 : BaseTest() {
         }
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun verifyScanErrorForDetectTableOption() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(oceanSeafood)
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnDetectTable()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             simulateError()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         popUp {
             checkQRCodeErrorMessage()
         }

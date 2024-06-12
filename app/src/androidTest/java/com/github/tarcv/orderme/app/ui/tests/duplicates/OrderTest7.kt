@@ -33,33 +33,33 @@ class OrderTest7 : BaseTest() {
     fun completeOrderFlowForRepublique() {
         setupMockData()
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             mockFBLogin()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnMenuOption()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         menuCategories {
             tapSaladsAndVegetables()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         menuItem {
             tapOnPlusButton(colemanFarmsLittleGems)
             tapOnPlusButton(blackAndWhiteSalad)
@@ -67,24 +67,24 @@ class OrderTest7 : BaseTest() {
             tapOnShoppingCart()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         bucket {
             typeInComments(comment)
             tapOnAccept()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         popUp {
             checkOrderStatus()
             tapOkButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnOrders()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         orders {
             checkOrderIsDisplayed(restaurantName, orderDate, time, bucketTotal)
         }
@@ -92,28 +92,28 @@ class OrderTest7 : BaseTest() {
 
     fun restaurantReservationFlow() {
         setupMockData()
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         login {
             mockFBLogin()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         restaurant {
             tapOnReservation()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         reservation {
             typeNumberOfPeople(numberOfPeople)
             typePhoneNumber(phoneNumber)
@@ -121,13 +121,13 @@ class OrderTest7 : BaseTest() {
             tapBookButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         popUp {
             checkReservationSuccessMessage()
             tapOkButton()
         }
 
-        Thread.sleep(1500L)
+        Thread.sleep(5000L)
         reservations {
             tapOnReservations()
             tapFutureReservations()
