@@ -12,10 +12,10 @@ import com.schibsted.spain.barista.rule.cleardata.ClearDatabaseRule
 import com.schibsted.spain.barista.rule.cleardata.ClearFilesRule
 import com.schibsted.spain.barista.rule.cleardata.ClearPreferencesRule
 import io.fabric8.mockwebserver.DefaultMockServer
+import readJSONFromAsset
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
-import readJSONFromAsset
 import javax.inject.Inject
 
 open class BaseTest {

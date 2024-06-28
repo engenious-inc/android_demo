@@ -39,22 +39,27 @@ class IntentTest : BaseTest() {
                 .respondWith(ActivityResult(RESULT_OK, null))
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testOpenMap() {
         setupMockData()
+
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnMap()
         }
@@ -67,16 +72,21 @@ class IntentTest : BaseTest() {
         )
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testOpenDialerForRomanov() {
         setupMockData()
+
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
+
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(romanov)
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnPhone()
         }
@@ -89,16 +99,19 @@ class IntentTest : BaseTest() {
         )
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testOpenDialerForRepublique() {
         setupMockData()
+        Thread.sleep(5000L)
         loginLaterAndOpenMockQR()
 
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnPhone()
         }
@@ -111,17 +124,21 @@ class IntentTest : BaseTest() {
         )
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testOpenDialerForHakkasan() {
         setupMockData()
+
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(hakkasan)
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnPhone()
         }
@@ -134,17 +151,21 @@ class IntentTest : BaseTest() {
         )
     }
 
-    @Test
+    @Test(timeout = 1*60*1000L)
     fun testOpenDialerForOceanSeafood() {
         setupMockData()
+
+        Thread.sleep(5000L)
         login {
             loginLater()
         }
 
+        Thread.sleep(5000L)
         restaurantList {
             selectRestaurant(oceanSeafood)
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnPhone()
         }

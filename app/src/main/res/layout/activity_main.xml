@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.github.tarcv.orderme.app.ui.SplashActivity">
 
-    <include layout="@layout/content_main" />
+    <include android:id="@+id/content_main"
+        layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

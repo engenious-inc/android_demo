@@ -9,8 +9,9 @@
     <string name="header_date">Date</string>
     <string name="time_header">Time</string>
     <string name="check_header">Check</string>
-    <string name="facebook_app_id">371530346532127</string>
-    <string name="fb_login_protocol_scheme">fb371530346532127</string>
+    <string name="facebook_app_id">947267746898179</string>
+    <string name="facebook_client_token">3492be5f3865184e1102e0b76689eb96</string>
+    <string name="fb_login_protocol_scheme">fb947267746898179</string>
     <string name="connection_error">"An error has occurred. Please check Internet connection"</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>

@@ -14,6 +14,7 @@ import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.Bucket
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.databinding.FragmentBucketBinding
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.FragmentStackCloser
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
@@ -25,7 +26,6 @@ import com.github.tarcv.orderme.app.ui.startQrCodeActivity
 import com.github.tarcv.orderme.core.data.entity.Category
 import com.github.tarcv.orderme.core.data.entity.Dish
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.fragment_bucket.*
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -38,11 +38,12 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
     private lateinit var presenter: BucketPresenter
     private lateinit var countClickListener: OnCountButtonClickListener
     private lateinit var arrowListener: onArrowButtonClickListener
+    private lateinit var binding: FragmentBucketBinding
 
     private val place: Place
-        get() = arguments!!.getSerializable(KEY_PLACE) as Place
+        get() = requireArguments().getSerializable(KEY_PLACE) as Place
     private val category: Category
-        get() = arguments!!.getSerializable(KEY_CATEGORY) as Category
+        get() = requireArguments().getSerializable(KEY_CATEGORY) as Category
 
     interface OnCountButtonClickListener {
         fun onMinusButtonCLicked(dish: Dish)
@@ -63,10 +64,10 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        view = inflater.inflate(R.layout.fragment_bucket, container, false)
-        return view
+        binding = FragmentBucketBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,16 +79,17 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
         dishes = mutableListOf()
         fillList()
         refreshTotal()
-        bucket_recycler_view.layoutManager = LinearLayoutManager(context)
-        bucket_recycler_view.adapter = RestaurantOptionsAdapter(dishes, countClickListener, bucket)
+        binding.bucketRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.bucketRecyclerView.adapter =
+            RestaurantOptionsAdapter(dishes, countClickListener, bucket)
 
-        bucket_delete_all.setOnClickListener {
+        binding.bucketDeleteAll.setOnClickListener {
             presenter.deleteAll()
         }
-        bucket_accept.setOnClickListener {
+        binding.bucketAccept.setOnClickListener {
             presenter.accept()
         }
-        back_button.setOnClickListener {
+        binding.backButton.setOnClickListener {
             arrowListener.onArrowClicked()
         }
     }
@@ -103,11 +105,11 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
         var total = 0.0
         for ((dish, count) in bucket.dishes)
             total += dish.price * count
-        bucket_total.text = total.toString()
+        binding.bucketTotal.text = total.toString()
     }
 
     override fun getComment(): String {
-        return bucket_comment.text.toString()
+        return binding.bucketComment.text.toString()
     }
 
     override fun getDate(): String {
@@ -115,7 +117,7 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
     }
 
     override fun getSum(): Double {
-        return bucket_total.text.toString().toDouble()
+        return binding.bucketTotal.text.toString().toDouble()
     }
 
     override fun getView(): View {
@@ -128,7 +130,7 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_QR_SCAN) {
-            saveOrErrorQrCodeForTable(context!!, place, resultCode, data)
+            saveOrErrorQrCodeForTable(requireContext(), place, resultCode, data)
         }
     }
 
@@ -158,7 +160,7 @@ class BucketFragment : LifecycleLogFragment(), BucketFragmentView {
     }
 
     override fun notifyDataSetChanged() {
-        (bucket_recycler_view.adapter as RestaurantOptionsAdapter).notifyDataSetChanged()
+        (binding.bucketRecyclerView.adapter as RestaurantOptionsAdapter).notifyDataSetChanged()
     }
 
     override fun notifyNotLoggedIn() {

@@ -16,14 +16,15 @@ import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.PlacesRepository
 import com.github.tarcv.orderme.app.R
 import com.github.tarcv.orderme.app.Utils
+import com.github.tarcv.orderme.app.databinding.OrderBinding
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.core.data.entity.Order
-import kotlinx.android.synthetic.main.order.*
 import javax.inject.Inject
 
 class OrderFragment : LifecycleLogFragment(), OrderView {
 
     private lateinit var orders: List<Order>
+    private lateinit var binding: OrderBinding
 
     @Inject
     lateinit var presenter: OrderPresenter
@@ -33,8 +34,8 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
 
     override fun setOrders(orders: List<Order>) {
         this.orders = orders
-        order_recyclerview.layoutManager = LinearLayoutManager(context)
-        order_recyclerview.adapter = OrderAdapter(orders, placesRepository)
+        binding.orderRecyclerview.layoutManager = LinearLayoutManager(context)
+        binding.orderRecyclerview.adapter = OrderAdapter(orders, placesRepository)
     }
 
     override fun onStart() {
@@ -54,25 +55,30 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         App.component.injectOrderFragment(this)
-        return inflater.inflate(R.layout.order, container, false)
+        binding = OrderBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     @SuppressLint("ApplySharedPref")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.setActionBar(order_toolbar)
+        activity?.setActionBar(binding.orderToolbar)
         activity?.actionBar?.title = ""
 
-        logout_button.setOnClickListener {
+        binding.logoutButton.setOnClickListener {
             val fragment = this@OrderFragment
 
             if (App.sharedPreferences.getString(App.LOGIN_TOKEN, "") == "") {
-                Snackbar.make(fragment.view!!, R.string.not_logged, Snackbar.LENGTH_LONG).show()
+                Snackbar.make(
+                    fragment.requireView(),
+                    R.string.not_logged,
+                    Snackbar.LENGTH_LONG
+                ).show()
             } else {
 
                 val builder = AlertDialog.Builder(fragment.getFragmentContext())
                 builder.setTitle(R.string.logout)
-                        .setPositiveButton(R.string.ok, { _, i ->
+                        .setPositiveButton(R.string.ok) { _, _ ->
                             LoginManager.getInstance().logOut()
                             App.sharedPreferences.edit().apply {
                                 putString(App.LOGIN_TOKEN, "")
@@ -80,12 +86,12 @@ class OrderFragment : LifecycleLogFragment(), OrderView {
                                 putInt(App.LOGIN_ID, -1)
                                 putString(App.LOGIN_USER_ID, "")
                             }.commit()
-                            fragment.activity!!.finishAfterTransition()
-                        })
-                        .setNegativeButton(R.string.cancel, { dialogInterface, _ ->
-                            dialogInterface.cancel()
-                        })
-                        .create()
+                            fragment.requireActivity().finishAfterTransition()
+                        }
+                    .setNegativeButton(R.string.cancel) { dialogInterface, _ ->
+                        dialogInterface.cancel()
+                    }
+                    .create()
                         .show()
             }
         }

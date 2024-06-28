@@ -11,6 +11,8 @@ import com.github.tarcv.orderme.core.data.response.DeleteReservationResponse
 import com.github.tarcv.orderme.core.data.response.GetMenuResponse
 import com.github.tarcv.orderme.core.data.response.MakeOrderResponse
 import com.github.tarcv.orderme.core.data.response.MakeReservationResponse
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -41,10 +43,12 @@ open class ApiClient(private var token: String, baseUrl: String) {
                 .addInterceptor(logging)
                 .build()
 
+        val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(okHttpClient)
                 .build()
 
@@ -70,17 +74,14 @@ open class ApiClient(private var token: String, baseUrl: String) {
     fun login(accessToken: String) = apiService.login(accessToken)
 
     fun getReservations(): Observable<List<Reserve>> {
-        assert(Singleton.user?.token != null)
         return apiService.getReservations()
     }
 
     fun getOrders(): Observable<List<Order>> {
-        assert(Singleton.user?.token != null)
         return apiService.getOrders()
     }
 
     fun deleteReservation(id: Int): Observable<DeleteReservationResponse> {
-        assert(Singleton.user?.token != null)
         return apiService.deleteReservation(id)
     }
 

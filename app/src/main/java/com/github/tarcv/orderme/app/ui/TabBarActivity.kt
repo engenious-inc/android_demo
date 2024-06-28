@@ -8,17 +8,17 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.ActivityTabBarBinding
 import com.github.tarcv.orderme.app.ui.base.BaseFragmentActivity
 import com.github.tarcv.orderme.app.ui.order.OrderFragment
 import com.github.tarcv.orderme.app.ui.reservation.ReservationsFragment
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.activity_tab_bar.navigation
-import kotlinx.android.synthetic.main.activity_tab_bar.pager
 import timber.log.Timber
 
 class TabBarActivity : BaseFragmentActivity() {
     private lateinit var mTabCollectionPagerAdapter: TabCollectionPagerAdapter
 
+    private lateinit var binding: ActivityTabBarBinding
     lateinit var reservationFragment: ReservationsFragment
         private set
 
@@ -31,7 +31,7 @@ class TabBarActivity : BaseFragmentActivity() {
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
-                pager.currentItem = when (item.itemId) {
+                binding.pager.currentItem = when (item.itemId) {
                     R.id.navigation_reservation -> 0
                     R.id.navigation_home -> 1
                     R.id.navigation_orders -> 2
@@ -50,26 +50,27 @@ class TabBarActivity : BaseFragmentActivity() {
         ) {}
 
         override fun onPageSelected(position: Int) {
-            navigation.selectedItemId = navigation.menu.getItem(position).itemId
+            binding.navigation.selectedItemId = binding.navigation.menu.getItem(position).itemId
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tab_bar)
+        binding = ActivityTabBarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         reservationFragment = ReservationsFragment()
         centerFragmentHolder = CenterFragmentHolder()
         orderFragment = OrderFragment()
         mTabCollectionPagerAdapter = TabCollectionPagerAdapter(
             supportFragmentManager, reservationFragment, centerFragmentHolder, orderFragment)
-        pager.adapter = mTabCollectionPagerAdapter
-        pager.addOnPageChangeListener(mOnPageChangeListener)
-        pager.offscreenPageLimit = 2
+        binding.pager.adapter = mTabCollectionPagerAdapter
+        binding.pager.addOnPageChangeListener(mOnPageChangeListener)
+        binding.pager.offscreenPageLimit = 2
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        navigation.selectedItemId = R.id.navigation_home
+        binding.navigation.selectedItemId = R.id.navigation_home
     }
 
     override fun onBackPressed() {
@@ -95,7 +96,7 @@ class TabCollectionPagerAdapter(
     private var orderFragment: OrderFragment
 )
     : FragmentStatePagerAdapter(supportFragmentManager) {
-    override fun getItem(position: Int): Fragment? =
+    override fun getItem(position: Int): Fragment =
             when (position) {
                 0 -> reservationsFragment
                 1 -> centerFragmentHolder

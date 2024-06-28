@@ -14,7 +14,6 @@ import com.github.tarcv.orderme.app.ui.robots.reservation
 import com.github.tarcv.orderme.app.ui.robots.reservations
 import com.github.tarcv.orderme.app.ui.robots.popUp
 import org.junit.Rule
-import org.junit.Test
 
 class OrderTest : BaseTest() {
     @get:Rule
@@ -29,30 +28,36 @@ class OrderTest : BaseTest() {
     private val reservationDate = "2020-06-27"
     private val restaurantName = "Republique"
 
-    @Test
     fun completeOrderFlowForRepublique() {
         setupMockData()
+
+        Thread.sleep(5000L)
         login {
             mockFBLogin()
         }
 
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnMenuOption()
         }
 
+        Thread.sleep(5000L)
         menuCategories {
             tapSaladsAndVegetables()
         }
 
+        Thread.sleep(5000L)
         menuItem {
             tapOnPlusButton(colemanFarmsLittleGems)
             tapOnPlusButton(blackAndWhiteSalad)
@@ -60,45 +65,53 @@ class OrderTest : BaseTest() {
             tapOnShoppingCart()
         }
 
+        Thread.sleep(5000L)
         bucket {
             typeInComments(comment)
             tapOnAccept()
         }
 
+        Thread.sleep(5000L)
         popUp {
             checkOrderStatus()
             tapOkButton()
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnOrders()
         }
 
+        Thread.sleep(5000L)
         orders {
             checkOrderIsDisplayed(restaurantName, orderDate, time, bucketTotal)
         }
     }
 
-    @Test
     fun restaurantReservationFlow() {
         setupMockData()
+        Thread.sleep(5000L)
         login {
             mockFBLogin()
         }
 
+        Thread.sleep(5000L)
         restaurantList {
             tapOnQrCodeButton()
         }
 
+        Thread.sleep(5000L)
         qrCode {
             typeInNewQrCode(republiqueQR)
             tapOnSubmitButton()
         }
 
+        Thread.sleep(5000L)
         restaurant {
             tapOnReservation()
         }
 
+        Thread.sleep(5000L)
         reservation {
             typeNumberOfPeople(numberOfPeople)
             typePhoneNumber(phoneNumber)
@@ -106,11 +119,13 @@ class OrderTest : BaseTest() {
             tapBookButton()
         }
 
+        Thread.sleep(5000L)
         popUp {
             checkReservationSuccessMessage()
             tapOkButton()
         }
 
+        Thread.sleep(5000L)
         reservations {
             tapOnReservations()
             tapFutureReservations()

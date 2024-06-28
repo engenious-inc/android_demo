@@ -10,12 +10,12 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.github.tarcv.orderme.app.App
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.ActivityMainBinding
 import com.github.tarcv.orderme.app.ui.base.BaseActivity
 import com.github.tarcv.orderme.core.ApiClient
 import com.github.tarcv.orderme.core.data.response.LoginResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.content_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -24,11 +24,14 @@ class SplashActivity : BaseActivity() {
     @Inject
     lateinit var apiClient: ApiClient
 
+    private lateinit var binding: ActivityMainBinding
+
     private val callbackManager = CallbackManager.Factory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         App.component.inject(this)
 
@@ -36,11 +39,13 @@ class SplashActivity : BaseActivity() {
             startActivity()
         }
 
-        login_later_button.setOnClickListener {
+        binding.contentMain.loginLaterButton.setOnClickListener {
             startActivity()
         }
 
-        login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+        binding.contentMain.loginButton.registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+
             override fun onSuccess(loginResult: LoginResult) {
                 Timber.i("LoginResult: onSuccess token = ${loginResult.accessToken.token}")
                 loginOnServer(loginResult.accessToken.token)
@@ -64,9 +69,9 @@ class SplashActivity : BaseActivity() {
 
     private fun updateButtonText() {
         if (! App.sharedPreferences.getString(App.LOGIN_TOKEN, "").isNullOrEmpty()) {
-            login_later_button.text = this.getString(R.string.continue_logged_in)
+            binding.contentMain.loginLaterButton.text = this.getString(R.string.continue_logged_in)
         } else {
-            login_later_button.text = this.getString(R.string.login_later)
+            binding.contentMain.loginLaterButton.text = this.getString(R.string.login_later)
         }
     }
 

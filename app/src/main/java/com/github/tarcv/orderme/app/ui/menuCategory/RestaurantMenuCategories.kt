@@ -10,14 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.github.tarcv.orderme.app.R
+import com.github.tarcv.orderme.app.databinding.CategoriesFragmentLayoutBinding
 import com.github.tarcv.orderme.app.onArrowButtonClickListener
 import com.github.tarcv.orderme.app.ui.LifecycleLogFragment
 import com.github.tarcv.orderme.app.ui.restaurantOptions.RestaurantOptionsFragment
 import com.github.tarcv.orderme.core.data.entity.Category
 import com.github.tarcv.orderme.core.data.entity.Place
-import kotlinx.android.synthetic.main.categories_fragment_layout.back_button
-import kotlinx.android.synthetic.main.categories_fragment_layout.categories_recycler
-import kotlinx.android.synthetic.main.categories_fragment_layout.restaurant_image_view
 import timber.log.Timber
 
 class RestaurantMenuCategories : LifecycleLogFragment(), RestaurantMenuCategoriesView {
@@ -38,11 +36,12 @@ class RestaurantMenuCategories : LifecycleLogFragment(), RestaurantMenuCategorie
     private lateinit var categories: List<Category>
     private lateinit var buttonCLickListener: OnPlaceCategoryClickListener
     private lateinit var arrowListener: onArrowButtonClickListener
+    private lateinit var binding: CategoriesFragmentLayoutBinding
 
     override fun setCategories(categories: List<Category>) {
         Timber.i("setCategories")
         this.categories = categories
-        categories_recycler.adapter = RestaurantCategoriesAdapter(
+        binding.categoriesRecycler.adapter = RestaurantCategoriesAdapter(
             categories,
             object : OnCategoryClickListener {
                 override fun onCategoryClick(category: Category) {
@@ -66,19 +65,20 @@ class RestaurantMenuCategories : LifecycleLogFragment(), RestaurantMenuCategorie
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
         presenter = RestaurantMenuCategoriesPresenter(place)
-        return inflater.inflate(R.layout.categories_fragment_layout, container, false)
+        binding = CategoriesFragmentLayoutBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         buttonCLickListener = parentFragment as OnPlaceCategoryClickListener
         arrowListener = parentFragment as onArrowButtonClickListener
-        categories_recycler.layoutManager = GridLayoutManager(context, numberOfColumns)
-        (restaurant_image_view as ImageView).setImageURI(Uri.parse(place.imagePath))
-        back_button.setOnClickListener {
+        binding.categoriesRecycler.layoutManager = GridLayoutManager(context, numberOfColumns)
+        (binding.restaurantImageView as ImageView).setImageURI(Uri.parse(place.imagePath))
+        binding.backButton.setOnClickListener {
             arrowListener.onArrowClicked()
         }
     }
