@@ -14,7 +14,7 @@ class FacebookLoginTest : BaseTest() {
     fun testFacebookLogin() {
         login {
             mockFBLogin()
-            Thread.sleep(5000L)
+            Thread.sleep(4000L)
             tapDeviceBackButton()
             Thread.sleep(5000L)
             checkContinueButtonPresent()
